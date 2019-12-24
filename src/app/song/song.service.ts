@@ -30,9 +30,8 @@ export class SongService {
     return this.http.delete(this.url + '/' + song.id);
   }
 
-  addSong(song: Song) {
-    song.id = this.songList[this.songList.length - 1].id + 1;
-    return this.http.post(this.url, song);
+  addSong(formData: FormData) {
+    return this.http.post(this.url, formData);
   }
 
   editSong(song: Song) {

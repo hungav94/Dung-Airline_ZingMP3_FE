@@ -4,5 +4,5 @@ export interface Song {
   description: string;
   avatar: string;
   fileMp3: string;
-  dateUpLoad: string;
+  dateUpLoad: Date;
 }

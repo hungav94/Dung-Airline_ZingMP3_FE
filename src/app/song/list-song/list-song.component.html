@@ -3,25 +3,27 @@
   <tr>
     <th scope="col">#</th>
     <th scope="col">Name</th>
-<!--    <th scope="col">Description</th>-->
-<!--    <th scope="col">Date Upload</th>-->
-<!--    <th scope="col">Avatar</th>-->
+    <th scope="col">Description</th>
+    <th scope="col">Date Upload</th>
+    <th scope="col">Avatar</th>
     <th scope="col">File MP3</th>
+    <th></th>
   </tr>
   </thead>
   <tbody *ngFor="let item of songList">
   <tr>
     <th scope="row">1</th>
     <td>{{item.name}}</td>
-<!--    <td>{{item.description}}</td>-->
-<!--    <td>{{item.dateUpLoad}}</td>-->
-<!--    <td><img src="{{item.avatar}}"></td>-->
+    <td>{{item.description}}</td>
+    <td>{{item.dateUpLoad}}</td>
+    <td><img src="{{item.avatar}}"></td>
     <td>
-      <audio controls style="width: 500px">
-        <source src="{{item.fileMp3}}" type="audio/ogg">
+      <audio controls>
         <source src="{{item.fileMp3}}" type="audio/mpeg">
+        <source src="{{item.fileMp3}}" type="audio/ogg">
       </audio>
     </td>
+    <td><button class="btn btn-danger" style="margin-left: 100px" type="button" (click)="deleteSong">Delete</button></td>
   </tr>
   </tbody>
 </table>

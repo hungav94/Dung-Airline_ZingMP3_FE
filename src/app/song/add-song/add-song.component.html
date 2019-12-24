@@ -1,1 +1,45 @@
-<p>add-song works!</p>
+<div class="col-form-label" style="text-shadow: magenta 2px 2px 6px; font-weight: bolder; margin-left: 50%">
+  New Song
+</div>
+<form [formGroup]="songForm" (ngSubmit)="onSubmit()" class="col-8 offset-3" style="margin-top: 50px">
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Name Song new:</label>
+    <div class="col-10">
+      <input class="form-control" type="text" formControlName="name">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Description:</label>
+    <div class="col-10">
+      <textarea class="form-control" type="text" formControlName="description"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Date Upload:</label>
+    <div class="col-10">
+      <input class="form-control" type="Date" formControlName="dateUpload">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Avatar:</label>
+    <div class="col-10">
+      <input class="form-control" type="file" (change)="onChangeAvatar($event)">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">File Mp3:</label>
+    <div class="col-10">
+      <input class="form-control" type="file" (change)="onChangeFileMp3($event)">
+    </div>
+  </div>
+  <div class=" row">
+    <button class="btn btn-info" type="submit" style="margin-left: 20%">Submit</button>
+    <button class="btn btn-info" type="button" routerLink="/songList" style="margin-left: 150px">Back</button>
+  </div>
+</form>
+
