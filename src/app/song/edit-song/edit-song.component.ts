@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {SongService} from '../song.service';
+import {DataTransferService} from '../../data-transfer.service';
+import {Song} from '../Song';
 
 @Component({
   selector: 'app-edit-song',
@@ -6,10 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-song.component.scss']
 })
 export class EditSongComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }
