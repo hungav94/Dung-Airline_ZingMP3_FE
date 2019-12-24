@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
 export class SongService {
 
   private songList: Song[];
-  private url = 'http://localhost:8080/api/song';
+  private url = 'http://localhost:8083/api/song';
 
   constructor(private http: HttpClient) {
   }
