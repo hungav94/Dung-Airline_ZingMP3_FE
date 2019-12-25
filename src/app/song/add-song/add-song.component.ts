@@ -13,6 +13,7 @@ export class AddSongComponent implements OnInit {
   songForm: FormGroup;
   avatar: any = File;
   fileMp3: any = File;
+  formData = new FormData();
 
   constructor(private fb: FormBuilder,
               private songService: SongService,
@@ -39,15 +40,14 @@ export class AddSongComponent implements OnInit {
 
   onSubmit() {
     const song = this.songForm.value;
-    const formData = new FormData();
-    formData.append('song', JSON.stringify(song));
-    formData.append('avatar', this.avatar);
-    formData.append('fileMp3', this.fileMp3);
-    if (confirm('Are You Sure?')) {
-      this.songService.addSong(this.songForm.value).subscribe(re => {
+    this.formData.append('song', JSON.stringify(song));
+    this.formData.append('avatar', this.avatar);
+    this.formData.append('fileMp3', this.fileMp3);
+    // if (confirm('Are You Sure?')) {
+    this.songService.addSong(this.formData).subscribe(result => {
         this.router.navigateByUrl('/songList');
       });
-    }
+    // }
   }
 
 }

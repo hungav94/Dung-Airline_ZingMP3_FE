@@ -1,7 +1,7 @@
 <div class="col-form-label" style="text-shadow: magenta 2px 2px 6px; font-weight: bolder; margin-left: 50%">
   New Song
 </div>
-<form [formGroup]="songForm" (ngSubmit)="onSubmit()" class="col-8 offset-3" style="margin-top: 50px">
+<form [formGroup]="songForm" (ngSubmit)="onSubmit()" class="col-8 offset-3" style="margin-top: 50px" enctype="multipart/form-data">
 
   <div class="form-group row">
     <label class="col-2 col-form-label">Name Song new:</label>
@@ -20,7 +20,7 @@
   <div class="form-group row">
     <label class="col-2 col-form-label">Date Upload:</label>
     <div class="col-10">
-      <input class="form-control" type="Date" formControlName="dateUpload">
+      <input class="form-control" type="text" formControlName="dateUpload">
     </div>
   </div>
 

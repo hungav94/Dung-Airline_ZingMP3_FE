@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Song} from '../Song';
 import {Router} from '@angular/router';
 import {SongService} from '../song.service';
@@ -21,13 +21,14 @@ export class ListSongComponent implements OnInit {
 
   ngOnInit() {
     this.songService.getSongList().subscribe(data => {
-      this.songService.setSongList(data);
       this.refreshSongList();
     });
   }
 
   refreshSongList() {
-    this.songList = this.songService.getCurrentSongList();
+    this.songService.getSongList().subscribe(result => {
+      this.songList = result;
+    });
   }
 
   deleteSong() {

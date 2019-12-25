@@ -5,7 +5,7 @@ import { EditSongComponent } from './edit-song/edit-song.component';
 import { ListSongComponent } from './list-song/list-song.component';
 import {HttpClientModule} from '@angular/common/http';
 import {SongRouting} from './song-routing.module';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -15,6 +15,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     HttpClientModule,
     SongRouting,
+    FormsModule,
     ReactiveFormsModule
   ]
 })

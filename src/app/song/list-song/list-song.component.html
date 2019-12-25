@@ -16,11 +16,11 @@
     <td>{{item.name}}</td>
     <td>{{item.description}}</td>
     <td>{{item.dateUpLoad}}</td>
-    <td><img src="{{item.avatar}}"></td>
+    <td><img src="http://localhost:8083/image/{{item.avatar}}"></td>
     <td>
       <audio controls>
-        <source src="{{item.fileMp3}}" type="audio/mpeg">
-        <source src="{{item.fileMp3}}" type="audio/ogg">
+        <source src="http://localhost:8083/image/{{item.fileMp3}}" type="audio/mpeg">
+        <source src="http://localhost:8083/image/{{item.fileMp3}}" type="audio/ogg">
       </audio>
     </td>
     <td><button class="btn btn-danger" style="margin-left: 100px" type="button" (click)="deleteSong">Delete</button></td>
