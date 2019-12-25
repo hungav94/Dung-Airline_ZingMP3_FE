@@ -12,7 +12,6 @@ import {DataTransferService} from '../../data-transfer.service';
 export class ListSongComponent implements OnInit {
 
   songList: Song[];
-  song: Song;
 
   constructor(private router: Router,
               private songService: SongService,
@@ -30,9 +29,9 @@ export class ListSongComponent implements OnInit {
     this.songList = this.songService.getCurrentSongList();
   }
 
-  deleteSong() {
+  deleteSong(item: Song) {
     if (confirm('Are You Sure You delete this Song?')) {
-      this.songService.deleteSong(this.song).subscribe(re => {
+      this.songService.deleteSong(item).subscribe(re => {
         this.router.navigateByUrl('/songList');
       });
     }
