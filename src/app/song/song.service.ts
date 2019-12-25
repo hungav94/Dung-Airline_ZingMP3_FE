@@ -8,18 +8,9 @@ import {Observable} from 'rxjs';
 })
 export class SongService {
 
-  private songList: Song[];
   private url = 'http://localhost:8083/api/song';
 
   constructor(private http: HttpClient) {
-  }
-
-  setSongList(songs: Song[]) {
-    this.songList = songs;
-  }
-
-  getCurrentSongList() {
-    return this.songList;
   }
 
   getSongList(): Observable<Song[]> {
@@ -30,7 +21,7 @@ export class SongService {
     return this.http.delete(this.url + '/' + song.id);
   }
 
-  addSong(formData: FormData) {
+  addSong(formData: FormData): Observable<any> {
     return this.http.post(this.url, formData);
   }
 

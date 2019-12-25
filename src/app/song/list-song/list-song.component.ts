@@ -16,23 +16,26 @@ export class ListSongComponent implements OnInit {
   constructor(private router: Router,
               private songService: SongService,
               private dataTransferService: DataTransferService) {
+    this.refreshSongList();
   }
 
   ngOnInit() {
     this.songService.getSongList().subscribe(data => {
-      this.songService.setSongList(data);
       this.refreshSongList();
     });
   }
 
   refreshSongList() {
-    this.songList = this.songService.getCurrentSongList();
+    this.songService.getSongList().subscribe(result => {
+      this.songList = result;
+    });
   }
 
   deleteSong(item: Song) {
     if (confirm('Are You Sure You delete this Song?')) {
       this.songService.deleteSong(item).subscribe(re => {
         this.router.navigateByUrl('/songList');
+        this.refreshSongList();
       });
     }
   }
