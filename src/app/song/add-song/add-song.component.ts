@@ -21,8 +21,8 @@ export class AddSongComponent implements OnInit {
     this.songForm = this.fb.group({
       name: [''],
       description: [''],
-      avatar: [''],
       dateUpload: [''],
+      avatar: [''],
       fileMp3: [''],
     });
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Song} from '../Song';
 import {Router} from '@angular/router';
 import {SongService} from '../song.service';
@@ -36,5 +36,9 @@ export class ListSongComponent implements OnInit {
         this.router.navigateByUrl('/songList');
       });
     }
+  }
+
+  editSong() {
+
   }
 }
