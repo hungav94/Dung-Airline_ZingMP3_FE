@@ -1,8 +1,13 @@
 <div class="col-form-label" style="text-shadow: magenta 2px 2px 6px; font-weight: bolder; margin-left: 50%">
-  Edit Song 
+  Edit Song
 </div>
 <form [formGroup]="songForm" (ngSubmit)="onSubmit()" class="col-8 offset-3" style="margin-top: 50px" enctype="multipart/form-data">
-
+  <div class="form-group row" hidden>
+    <label class="col-2 col-form-label">id:</label>
+    <div class="col-10">
+      <input class="form-control" type="text" formControlName="id">
+    </div>
+  </div>
   <div class="form-group row">
     <label class="col-2 col-form-label">Name Song new:</label>
     <div class="col-10">
@@ -26,6 +31,7 @@
 
   <div class="form-group row">
     <label class="col-2 col-form-label">Avatar:</label>
+    <img src="http://localhost:8083/file/{{song.avatar}}" style="width: 100px; height: 100px">
     <div class="col-10">
       <input class="form-control" type="file" >
     </div>
@@ -33,6 +39,10 @@
 
   <div class="form-group row">
     <label class="col-2 col-form-label">File Mp3:</label>
+    <audio controls>
+      <source src="http://localhost:8083/file/{{song.fileMp3}}" type="audio/mpeg">
+      <source src="http://localhost:8083/file/{{song.fileMp3}}" type="audio/ogg">
+    </audio>
     <div class="col-10">
       <input class="form-control" type="file" >
     </div>

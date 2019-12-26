@@ -36,6 +36,6 @@ export class EditSongComponent implements OnInit {
 
   onSubmit() {
     this.songService.editSong(this.songForm.value);
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/songList');
   }
 }
