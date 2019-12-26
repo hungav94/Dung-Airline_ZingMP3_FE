@@ -30,9 +30,9 @@ export class EditSongComponent implements OnInit {
       id: [this.song.id],
       name: [this.song.name],
       description: [this.song.description],
-      dateUpload: [this.song.dateUpLoad]
+      dateUpload: [this.song.dateUpLoad],
+      avatar: [this.song.avatar]
     });
-    console.log('songForm: ' + this.songForm);
   }
 
   onchangeAvatar(event) {
@@ -42,9 +42,8 @@ export class EditSongComponent implements OnInit {
 
 
   onSubmit() {
-    const songJ = this.songForm.value;
-    console.log('songJ: ' + songJ);
-    this.formData.append('song', JSON.stringify(songJ));
+    const songAvatar = this.songForm.value;
+    this.formData.append('song', JSON.stringify(songAvatar));
     this.formData.append('avatar', this.avatar);
     this.songService.editSong(this.formData).subscribe(result => {
       this.router.navigateByUrl('/songList');
