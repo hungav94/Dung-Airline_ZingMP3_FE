@@ -25,7 +25,7 @@ export class SongService {
     return this.http.post(this.url, formData);
   }
 
-  editSong(song: Song) {
-    return this.http.put(this.url + '/' + song.id, song);
+  editSong(formData: FormData): Observable<any> {
+    return this.http.put(this.url, formData);
   }
 }

@@ -40,7 +40,8 @@ export class ListSongComponent implements OnInit {
     }
   }
 
-  editSong() {
-
+  editSong(item: Song) {
+    this.dataTransferService.setData(item);
+    this.router.navigateByUrl('/editSong');
   }
 }
