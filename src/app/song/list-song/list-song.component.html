@@ -12,7 +12,7 @@
   </thead>
   <tbody *ngFor="let item of songList">
   <tr>
-    <th scope="row">1</th>
+    <th scope="row">{{item.id}}</th>
     <td>{{item.name}}</td>
     <td>{{item.description}}</td>
     <td>{{item.dateUpLoad}}</td>
@@ -22,9 +22,10 @@
         <source src="http://localhost:8083/image/{{item.fileMp3}}" type="audio/mpeg">
         <source src="http://localhost:8083/image/{{item.fileMp3}}" type="audio/ogg">
       </audio>
+
     </td>
     <td><button class="btn btn-danger" style="margin-left: 100px" type="button" (click)="deleteSong(item)">Delete</button></td>
-    <td><button class="btn btn-danger" style="margin-left: 100px" type="button" (click)="editSong()">Edit</button></td>
+    <td><button class="btn btn-info" style="margin-left: 100px" type="button" (click)="editSong()">Edit</button></td>
   </tr>
   </tbody>
 </table>
