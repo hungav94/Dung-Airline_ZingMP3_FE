@@ -43,11 +43,8 @@ export class AddSongComponent implements OnInit {
     this.formData.append('song', JSON.stringify(song));
     this.formData.append('avatar', this.avatar);
     this.formData.append('fileMp3', this.fileMp3);
-    // if (confirm('Are You Sure?')) {
     this.songService.addSong(this.formData).subscribe(result => {
-        this.router.navigateByUrl('/songList');
-      });
-    // }
+      this.router.navigateByUrl('/songList');
+    });
   }
-
 }
