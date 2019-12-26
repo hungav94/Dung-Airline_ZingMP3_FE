@@ -11,10 +11,11 @@ import {FormBuilder, FormGroup} from '@angular/forms';
   styleUrls: ['./edit-song.component.scss']
 })
 export class EditSongComponent implements OnInit {
-  songs: Song[];
   song: Song;
   songForm: FormGroup;
+  formData = new FormData();
   avatar: any = File;
+  fileMp3: any = File;
 
   constructor(private fb: FormBuilder,
               private songService: SongService,
@@ -24,25 +25,29 @@ export class EditSongComponent implements OnInit {
 
   ngOnInit() {
     this.song = this.dataTransfer.getData();
+    console.log('id: ' + this.song.id);
     this.songForm = this.fb.group({
       id: [this.song.id],
       name: [this.song.name],
       description: [this.song.description],
       dateUpload: [this.song.dateUpLoad],
-      avatar: [this.song.avatar],
-      fileMp3: [this.song.fileMp3],
+      avatar: [this.song.avatar]
     });
+  }
+
+  onchangeAvatar(event) {
+    const file = event.target.files[0];
+    this.avatar = file;
   }
 
 
   onSubmit() {
-    this.songService.editSong(this.songForm.value).subscribe(result => {
+    const songAvatar = this.songForm.value;
+    this.formData.append('song', JSON.stringify(songAvatar));
+    this.formData.append('avatar', this.avatar);
+    this.songService.editSong(this.formData).subscribe(result => {
       this.router.navigateByUrl('/songList');
     });
   }
 
-  onChangeImg(event) {
-    const file = event.target.file[0];
-    this.avatar = file;
-  }
 }

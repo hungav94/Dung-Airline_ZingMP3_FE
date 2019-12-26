@@ -2,8 +2,7 @@ export interface Song {
   id: number;
   name: string;
   description: string;
-  dateUpLoad: Date;
+  dateUpLoad: string;
   avatar: string;
   fileMp3: string;
-
 }

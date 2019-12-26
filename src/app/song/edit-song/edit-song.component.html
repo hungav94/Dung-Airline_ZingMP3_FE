@@ -32,22 +32,11 @@
   <div class="form-group row">
     <label class="col-2 col-form-label">Avatar:</label>
     <img src="http://localhost:8083/file/{{song.avatar}}" style="width: 100px; height: 100px">
-    <br><br>
     <div class="col-10">
-      <input class="form-control" type="file" (change)="onChangeImg($event)">
+      <input class="form-control" type="file" (change)="onchangeAvatar($event)">
     </div>
   </div>
 
-  <div class="form-group row" hidden>
-    <label class="col-2 col-form-label">File Mp3:</label>
-    <audio controls>
-      <source src="http://localhost:8083/file/{{song.fileMp3}}" type="audio/mpeg">
-      <source src="http://localhost:8083/file/{{song.fileMp3}}" type="audio/ogg">
-    </audio>
-    <div class="col-10">
-      <input class="form-control" type="file" >
-    </div>
-  </div>
   <div class=" row">
     <button class="btn btn-info" type="submit" style="margin-left: 20%">Submit</button>
     <button class="btn btn-info" type="button" routerLink="/songList" style="margin-left: 150px">Back</button>
