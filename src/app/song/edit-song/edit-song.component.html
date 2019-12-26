@@ -32,12 +32,13 @@
   <div class="form-group row">
     <label class="col-2 col-form-label">Avatar:</label>
     <img src="http://localhost:8083/file/{{song.avatar}}" style="width: 100px; height: 100px">
+    <br><br>
     <div class="col-10">
-      <input class="form-control" type="file" >
+      <input class="form-control" type="file" (change)="onChangeImg($event)">
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="form-group row" hidden>
     <label class="col-2 col-form-label">File Mp3:</label>
     <audio controls>
       <source src="http://localhost:8083/file/{{song.fileMp3}}" type="audio/mpeg">

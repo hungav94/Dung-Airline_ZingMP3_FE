@@ -14,6 +14,7 @@ export class EditSongComponent implements OnInit {
   songs: Song[];
   song: Song;
   songForm: FormGroup;
+  avatar: any = File;
 
   constructor(private fb: FormBuilder,
               private songService: SongService,
@@ -35,7 +36,13 @@ export class EditSongComponent implements OnInit {
 
 
   onSubmit() {
-    this.songService.editSong(this.songForm.value);
-    this.router.navigateByUrl('/songList');
+    this.songService.editSong(this.songForm.value).subscribe(result => {
+      this.router.navigateByUrl('/songList');
+    });
+  }
+
+  onChangeImg(event) {
+    const file = event.target.file[0];
+    this.avatar = file;
   }
 }
