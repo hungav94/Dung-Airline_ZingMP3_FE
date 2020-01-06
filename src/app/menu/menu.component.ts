@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {SongService} from '../song/song.service';
+import {DataTransferService} from '../data-transfer.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,
+              private songService: SongService,
+              private dataTransfer: DataTransferService) {
+  }
 
   ngOnInit() {
   }
 
+  Search(event) {
+    const search = event.target.value;
+    this.songService.searchSongByName(search).subscribe(result => {
+      const song = result;
+      this.dataTransfer.setData(song);
+      this.router.navigateByUrl('/songList');
+    });
+  }
 }
