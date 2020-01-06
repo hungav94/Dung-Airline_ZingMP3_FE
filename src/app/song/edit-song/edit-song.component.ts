@@ -25,7 +25,6 @@ export class EditSongComponent implements OnInit {
 
   ngOnInit() {
     this.song = this.dataTransfer.getData();
-    console.log('id: ' + this.song.id);
     this.songForm = this.fb.group({
       id: [this.song.id],
       name: [this.song.name],

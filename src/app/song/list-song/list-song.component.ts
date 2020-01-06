@@ -20,9 +20,17 @@ export class ListSongComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.songService.getSongList().subscribe(data => {
+    this.searchSong();
+    this.refreshSongList();
+  }
+
+  searchSong() {
+    const tmp = this.dataTransferService.getData();
+    if (tmp === undefined) {
       this.refreshSongList();
-    });
+    } else {
+      this.songList = tmp;
+    }
   }
 
   refreshSongList() {
@@ -44,4 +52,5 @@ export class ListSongComponent implements OnInit {
     this.dataTransferService.setData(item);
     this.router.navigateByUrl('/editSong');
   }
+
 }

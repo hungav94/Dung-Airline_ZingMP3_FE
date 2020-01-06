@@ -17,6 +17,10 @@ export class SongService {
     return this.http.get<Song[]>(this.url);
   }
 
+  getSearchSong(search: string): Observable<Song[]> {
+    return this.http.get<Song[]>(this.url + '-search');
+  }
+
   deleteSong(song: Song) {
     return this.http.delete(this.url + '/' + song.id);
   }
