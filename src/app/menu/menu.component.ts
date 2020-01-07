@@ -20,10 +20,19 @@ export class MenuComponent implements OnInit {
 
   Search(event) {
     const search = event.target.value;
-    this.songService.searchSongByName(search).subscribe(result => {
-      const song = result;
-      this.dataTransfer.setData(song);
-      this.router.navigateByUrl('/songList');
-    });
+    console.log(search);
+    if (search === '') {
+      this.songService.getSongList().subscribe(result => {
+        const song = result;
+        this.dataTransfer.setData(song);
+      });
+    } else {
+      this.songService.searchSongByName(search).subscribe(result => {
+        const song = result;
+        this.dataTransfer.setData(song);
+        this.router.navigateByUrl('/songList');
+      });
+    }
   }
+
 }
