@@ -20,6 +20,7 @@ export class MenuComponent implements OnInit {
 
   Search(event) {
     const search = event.target.value;
+    console.log(search);
     if (search === '') {
       this.songService.getSongList().subscribe(result => {
         const song = result;

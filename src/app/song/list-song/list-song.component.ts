@@ -24,6 +24,7 @@ export class ListSongComponent implements OnInit {
   ngOnInit() {
     this.searchSong();
     this.$searchName = this.dataTransferService.getDataAsObservarble();
+    console.log(this.$searchName);
     this.$searchName.subscribe( songList => {
       // console.log(songList);
       this.songList = songList;

@@ -10,13 +10,17 @@
   z-index: 0;
 }
 
+.nav-link {
+  color: white;
+}
+
 .header-search-wrap {
   width: auto;
   border-radius: 4px;
   display: inline-block;
   position: relative;
   z-index: 1;
-  margin: 15px 0px 15px 60px;
+  margin: 15px 0px 15px 99px;
   border: 1px solid rgba(219, 219, 219, .5);
   background-color: #ffffff;
 }
@@ -33,6 +37,7 @@
 
 .navbar{
   height: 110px;
+  background-image: url("../../assets/image/banner.jpg");
 }
 .top-bar{
   margin-top: -30px;
@@ -102,7 +107,7 @@ i {
   float: right;
   display: flex;
   align-items: center;
-  margin-left: 150px;
+  margin-left: 111px;
 }
 
 .dropdownMenuButton {
@@ -123,11 +128,11 @@ i {
   margin-left: 10px;
 }
 
-z-menu-bar {
-  height: 54px;
-  width: 100%;
-  top: 70px;
-  left: 0;
-  position: absolute;
-  z-index: 0;
+.btn{
+  color: white;
 }
+
+.btn:hover{
+  color: blue;
+}
+
