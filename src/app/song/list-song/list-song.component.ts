@@ -3,6 +3,7 @@ import {Song} from '../Song';
 import {Router} from '@angular/router';
 import {SongService} from '../song.service';
 import {DataTransferService} from '../../data-transfer.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-list-song',
@@ -12,6 +13,7 @@ import {DataTransferService} from '../../data-transfer.service';
 export class ListSongComponent implements OnInit {
 
   songList: Song[];
+  $searchName: Observable<any>;
 
   constructor(private router: Router,
               private songService: SongService,
@@ -21,6 +23,11 @@ export class ListSongComponent implements OnInit {
 
   ngOnInit() {
     this.searchSong();
+    this.$searchName = this.dataTransferService.getDataAsObservarble();
+    this.$searchName.subscribe( songList => {
+      // console.log(songList);
+      this.songList = songList;
+    });
     // this.refreshSongList();
   }
 
