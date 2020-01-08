@@ -41,7 +41,7 @@ export class ListSongComponent implements OnInit {
   deleteSong(item: Song) {
     if (confirm('Are You Sure You delete this Song?')) {
       this.songService.deleteSong(item).subscribe(re => {
-        this.router.navigateByUrl('/songList');
+        this.router.navigateByUrl('/song/songList');
         this.refreshSongList();
       });
     }
@@ -49,7 +49,7 @@ export class ListSongComponent implements OnInit {
 
   editSong(item: Song) {
     this.dataTransferService.setData(item);
-    this.router.navigateByUrl('/editSong');
+    this.router.navigateByUrl('/song/editSong');
   }
 
   searchSong() {

@@ -44,7 +44,7 @@ export class AddSongComponent implements OnInit {
     this.formData.append('avatar', this.avatar);
     this.formData.append('fileMp3', this.fileMp3);
     this.songService.addSong(this.formData).subscribe(result => {
-      this.router.navigateByUrl('/songList');
+      this.router.navigateByUrl('/song/songList');
     });
   }
 }
