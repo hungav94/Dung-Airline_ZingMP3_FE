@@ -45,7 +45,7 @@ export class EditSongComponent implements OnInit {
     this.formData.append('song', JSON.stringify(songAvatar));
     this.formData.append('avatar', this.avatar);
     this.songService.editSong(this.formData).subscribe(result => {
-      this.router.navigateByUrl('/songList');
+      this.router.navigateByUrl('/song/songList');
     });
   }
 
