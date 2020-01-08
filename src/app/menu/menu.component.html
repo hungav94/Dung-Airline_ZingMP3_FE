@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-lg navbar-light bg-light" >
+<div class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="top-bar">
     <a class="logo" href="/">Zing mp3</a>
     <div class="menu-bar">
@@ -25,7 +25,8 @@
                 <input type="text" autocomplete="off" aria-autocomplete="list"
                        aria-controls="react-autowhatever-1"
                        class="form-control input-placeholder"
-                       placeholder="Nhập tên bài hát, ca sĩ hoặc mv…" value="" style="width: 500px" (change)="Search($event)">
+                       placeholder="Nhập tên bài hát, ca sĩ hoặc mv…" value="" style="width: 500px"
+                       (change)="Search($event)">
               </div>
             </label>
           </div>
@@ -45,20 +46,21 @@
           <ul class="nav">
             <div class="card-info">
               <div class="title mar-top-10 dropdown">
-                <a role="button" class="btn" type="button" routerLink="/auth/login"> Đăng Nhập</a>
+                <a role="button" class="btn" type="button" routerLink="auth/login">Đăng Nhập</a>
                 <a role="button" class="btn dropdown-toggle" type="button"
                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false"></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <ul class="z-user-menu-list dropdown-item">
-                    <li><a><i class="icon ic-brightness"></i><span>Nền tối</span><i
+                    <li><a><i class="icon ic-brightness"></i><span routerLink="/register">Đăng ký</span><i
                       class="icon ic-svg-switch z-switch-off"></i></a>
                     </li>
                   </ul>
-                  <div class="z-vip-area bor-top dropdown-item">
-                    <div class="z-center"><a rel="noopener noreferrer" href="https://zingmp3.vn/vip?popup=1"
-                                             class="z-btn z-btn-yellow z-btn-shadow">Mua VIP ngay</a></div>
-                  </div>
+                  <ul class="z-user-menu-list dropdown-item">
+                    <li><a><i class="icon ic-brightness"></i><span>Đăng xuất</span>
+                      <i class="icon ic-svg-switch z-switch-off"></i></a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
