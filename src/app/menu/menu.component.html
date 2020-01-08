@@ -1,15 +1,15 @@
-<div class="navbar navbar-expand-lg navbar-light bg-light" >
+<div class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="top-bar">
-    <a class="logo" routerLink="home">Zing mp3</a>
+    <a class="logo" href="/">Zing mp3</a>
     <div class="menu-bar">
       <div class="nav">
         <ul class="nav">
-          <li class=""><a class="nav-link text-uppercase active" routerLink="home">Trang chủ</a></li>
+          <li class=""><a class="nav-link text-uppercase active" routerLink="">Trang chủ</a></li>
           <li class=""><a class="nav-link text-uppercase " href="#">#zingchart</a></li>
           <li class=""><a class="nav-link text-uppercase " href="#">Top 100</a></li>
           <li class=""><a class="nav-link text-uppercase " href="#">Chủ đề</a></li>
           <li class="--z--shrink"><a class="nav-link text-uppercase " href="#">MV</a></li>
-          <li class="--z--shrink"><a class="nav-link text-uppercase " routerLink="/song/songList">Album</a></li>
+          <li class="--z--shrink"><a class="nav-link text-uppercase " routerLink="song/songList">Album</a></li>
           <li class="--z--shrink"><a class="nav-link text-uppercase " href="#">Nghệ sĩ</a></li>
           <li><a class="nav-link " href="#">NHẠC CÁ NHÂN</a></li>
         </ul>
@@ -25,7 +25,8 @@
                 <input type="text" autocomplete="off" aria-autocomplete="list"
                        aria-controls="react-autowhatever-1"
                        class="form-control input-placeholder"
-                       placeholder="Nhập tên bài hát, ca sĩ hoặc mv…" value="" style="width: 500px" (change)="Search($event)">
+                       placeholder="Nhập tên bài hát, ca sĩ hoặc mv…" value="" style="width: 500px"
+                       (change)="Search($event)">
               </div>
             </label>
           </div>
@@ -45,25 +46,21 @@
           <ul class="nav">
             <div class="card-info">
               <div class="title mar-top-10 dropdown">
-                <a role="button" class="btn" type="button" routerLink="/login1"> Đăng Nhập</a>
+                <a role="button" class="btn" type="button" routerLink="auth/login">Đăng Nhập</a>
                 <a role="button" class="btn dropdown-toggle" type="button"
                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false" ></a>
+                   aria-expanded="false"></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <ul class="z-user-menu-list dropdown-item">
-                    <li><a><i class="icon ic-brightness"></i><span routerLink="/register1">Đăng Kí</span><i
+                    <li><a><i class="icon ic-brightness"></i><span routerLink="/register">Đăng ký</span><i
                       class="icon ic-svg-switch z-switch-off"></i></a>
                     </li>
                   </ul>
                   <ul class="z-user-menu-list dropdown-item">
-                    <li><a><i class="icon ic-brightness"></i><span>Nền tối</span><i
-                      class="icon ic-svg-switch z-switch-off"></i></a>
+                    <li><a><i class="icon ic-brightness"></i><span>Đăng xuất</span>
+                      <i class="icon ic-svg-switch z-switch-off"></i></a>
                     </li>
                   </ul>
-<!--                  <div class="z-vip-area bor-top dropdown-item">-->
-<!--                    <div class="z-center"><a rel="noopener noreferrer" href="https://zingmp3.vn/vip?popup=1"-->
-<!--                                             class="z-btn z-btn-yellow z-btn-shadow">Mua VIP ngay</a></div>-->
-<!--                  </div>-->
                 </div>
               </div>
             </div>
@@ -73,18 +70,3 @@
     </div>
   </div>
 </div>
-
-<!--<div class="z-menu-bar">-->
-<!--  <div class="&#45;&#45;z&#45;&#45;menu-bar-inner">-->
-<!--    <ul class="z-nav pri">-->
-<!--      <li class="" style=""><a class="nav-link text-upper active" href="/">Trang chủ</a>-->
-<!--      </li>-->
-<!--      <li class="" style=""><a class="nav-link text-upper " href="/zing-chart/index.html">#zingchart</a></li>-->
-<!--      <li class="" style=""><a class="nav-link text-upper " href="/top100">Top 100</a></li><li class="" style=""><a class="nav-link text-upper " href="/chu-de">Chủ đề</a></li>-->
-<!--      <li class="&#45;&#45;z&#45;&#45;shrink" style=""><a class="nav-link text-upper " href="/the-loai-video.html">MV</a></li>-->
-<!--      <li class="&#45;&#45;z&#45;&#45;shrink" style=""><a class="nav-link text-upper " href="/the-loai-album.html">Album</a></li>-->
-<!--      <li class="&#45;&#45;z&#45;&#45;shrink" style=""><a class="nav-link text-upper " href="/the-loai-nghe-si.html">Nghệ sĩ</a></li>-->
-<!--      <li style=""><a class="nav-link " href="/mymusic">NHẠC CÁ NHÂN</a></li><li class="&#45;&#45;z&#45;&#45;shrink z-button-vip" style="padding-right: 20px;"><a class="nav-link" href="https://zingmp3.vn/vip#utm_source=desktop&amp;utm_medium=topnav-link&amp;utm_campaign=VIP" rel="noopener noreferrer" target="_blank"><i class="icon ic-svg-vip-btn"></i></a></li><li class="&#45;&#45;z&#45;&#45;shrink z-button-vip" style=""><a class="nav-link" href="https://awards.zingmp3.vn" rel="noopener noreferrer" target="_blank"><i class="icon ic-zma-btn"></i></a></li>-->
-<!--    </ul>-->
-<!--  </div>-->
-<!--</div>-->

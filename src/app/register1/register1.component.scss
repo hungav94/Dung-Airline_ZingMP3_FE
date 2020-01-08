@@ -1,3 +1,5 @@
+/* BASIC */
+
 html {
   background-color: #56baed;
 }
@@ -23,6 +25,9 @@ h2 {
   margin: 40px 8px 10px 8px;
   color: #cccccc;
 }
+
+
+/* STRUCTURE */
 
 .wrapper {
   display: flex;
@@ -57,6 +62,9 @@ h2 {
   border-radius: 0 0 10px 10px;
 }
 
+
+/* TABS */
+
 h2.inactive {
   color: #cccccc;
 }
@@ -65,6 +73,9 @@ h2.active {
   color: #0d0d0d;
   border-bottom: 2px solid #5fbae9;
 }
+
+
+/* FORM TYPOGRAPHY*/
 
 input[type=button], input[type=submit], input[type=reset] {
   background-color: #56baed;
@@ -126,6 +137,14 @@ input[type=text]:focus {
   border-bottom: 2px solid #5fbae9;
 }
 
+//input[type=text]:placeholder {
+//  color: #cccccc;
+//}
+
+
+/* ANIMATIONS */
+
+/* Simple CSS3 Fade-in-down Animation */
 .fadeInDown {
   -webkit-animation-name: fadeInDown;
   animation-name: fadeInDown;
@@ -161,6 +180,7 @@ input[type=text]:focus {
   }
 }
 
+/* Simple CSS3 Fade-in Animation */
 @-webkit-keyframes fadeIn {
   from {
     opacity: 0;
@@ -227,6 +247,7 @@ input[type=text]:focus {
   animation-delay: 1s;
 }
 
+/* Simple CSS3 Fade-in Animation */
 .underlineHover:after {
   display: block;
   left: 0;
@@ -245,6 +266,9 @@ input[type=text]:focus {
 .underlineHover:hover:after {
   width: 100%;
 }
+
+
+/* OTHERS */
 
 *:focus {
   outline: none;
