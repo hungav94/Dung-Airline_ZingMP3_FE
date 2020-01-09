@@ -12,7 +12,7 @@ export class DataTransferService {
   }
 
   setData(data: any) {
-    // this.data = data;
+    this.data = data;
     this.$data.next(data);
   }
 

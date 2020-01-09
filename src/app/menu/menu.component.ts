@@ -48,7 +48,7 @@ export class MenuComponent implements OnInit {
       this.songService.searchSongByName(search).subscribe(result => {
         const song = result;
         this.dataTransfer.setData(song);
-        this.router.navigateByUrl('/songList');
+        this.router.navigateByUrl('/song/songList');
       });
 }
   }

@@ -9,8 +9,11 @@ import {Login1Component} from './login1/login1.component';
 import {Register1Component} from './register1/register1.component';
 import {HomeComponent} from './home/home.component';
 
-
 const routes: Routes = [
+  {
+    path: 'playlist',
+    loadChildren: './playlist/playlist.module#PlaylistModule'
+  },
   {
     path: 'song',
     loadChildren: './song/song.module#SongModule',
