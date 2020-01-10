@@ -1,6 +1,9 @@
+import {Song} from '../song/Song';
+
 export interface Playlist {
   id: number;
-  name: string;
-  description: string;
-  song: [];
+  playlistName: string;
+  playlistDescription: string;
+  avatarPlaylist: string;
+  songs: Song[];
 }

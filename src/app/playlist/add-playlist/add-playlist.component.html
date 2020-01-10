@@ -1,1 +1,40 @@
-<p>add-playlist works!</p>
+<div class="col-form-label" style="text-shadow: magenta 2px 2px 6px; font-weight: bolder; margin-left: 50%">
+  New Song
+</div>
+<form [formGroup]="playlistForm" (ngSubmit)="onSubmit()" class="col-8 offset-3" style="margin-top: 50px" enctype="multipart/form-data">
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Name playlist new:</label>
+    <div class="col-10">
+      <input class="form-control" type="text" formControlName="playlistName">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Playlist Description:</label>
+    <div class="col-10">
+      <textarea class="form-control" type="text" formControlName="playlistDescription"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Avatar:</label>
+    <!--    <td><img src="http://localhost:8083/file/{{song.avatar}}" style="width: 100px; height: 100px"></td>-->
+    <div class="col-10">
+      <input class="form-control" type="file" (change)="onChangeAvatar($event)">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Song:</label>
+    <div class="col-10" *ngFor="let item of songList">
+      <input type="checkbox" (change)="onChangeBox(item.id, $event)">{{item.name}}
+    </div>
+  </div>
+
+  <div class=" row">
+    <button class="btn btn-info" type="submit" style="margin-left: 20%">Submit</button>
+    <button class="btn btn-info" type="button" routerLink="/playlist" style="margin-left: 150px">Back</button>
+  </div>
+</form>
+

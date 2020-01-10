@@ -1,0 +1,8 @@
+<div class="card" style="width: 10rem;height: 20rem">
+  <img [src]="'http://localhost:8083/file/'+playlist.avatarPlaylist" class="card-img-top" alt="..." style="width: 10rem; height: 12rem; padding: 5px" (click)="emitView()">
+  <div class="card-body">
+    <p class="card-title" style="color: blue; text-shadow: magenta 2px 2px 6px"
+        (click)="emitView()"> {{ playlist.playlistName }}</p>
+    <p class="card-text"> {{ playlist.playlistDescription }} </p>
+  </div>
+</div>
