@@ -50,7 +50,11 @@ export class MenuComponent implements OnInit {
         this.dataTransfer.setData(song);
         this.router.navigateByUrl('/song/songList');
       });
-}
+    }
   }
 
+  Logout(event) {
+    sessionStorage.clear();
+    this.router.navigateByUrl('/home');
+  }
 }

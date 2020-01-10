@@ -10,6 +10,4 @@ export class PlaylistService {
 
   constructor(private http: HttpClient) {
   }
-
-
 }
