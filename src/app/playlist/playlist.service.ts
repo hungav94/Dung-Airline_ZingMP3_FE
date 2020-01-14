@@ -25,4 +25,8 @@ export class PlaylistService {
     return this.http.post(this.url, formData);
   }
 
+  editPlaylist(formData: FormData) {
+    return this.http.put(this.url, formData);
+  }
+
 }
