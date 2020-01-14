@@ -11,7 +11,7 @@
           <li class="--z--shrink"><a class="nav-link text-uppercase btn " href="#">MV</a></li>
           <li class="--z--shrink"><a class="nav-link text-uppercase btn" routerLink="song/songList">Album</a></li>
           <li class="--z--shrink"><a class="nav-link text-uppercase btn" href="#">Nghệ sĩ</a></li>
-          <li><a class="nav-link btn" href="#">NHẠC CÁ NHÂN</a></li>
+          <li><a class="nav-link btn" routerLink="/playlist">NHẠC CÁ NHÂN</a></li>
         </ul>
       </div>
     </div>
@@ -57,8 +57,8 @@
                     </li>
                   </ul>
                   <ul class="z-user-menu-list dropdown-item">
-                    <li><a><i class="icon ic-brightness"></i><a (submit)="Logout($event)">Đăng xuất</a>
-                      <i class="icon ic-svg-switch z-switch-off"></i></a>
+                    <li><i class="icon ic-brightness"></i><a href="#" (click)="Logout()">Đăng xuất</a>
+                      <i class="icon ic-svg-switch z-switch-off"></i>
                     </li>
                   </ul>
                 </div>

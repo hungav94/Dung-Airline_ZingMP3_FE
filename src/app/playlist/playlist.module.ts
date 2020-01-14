@@ -9,11 +9,13 @@ import {RouterModule} from '@angular/router';
 import {PlaylistRoutingModule} from './playlist-routing.module';
 import {httpInterceptorProviders} from '../auth/auth-interceptor';
 import {PlaylistService} from './playlist.service';
+import { ItemPlaylistComponent } from './item-playlist/item-playlist.component';
+import { DetailPlaylistComponent } from './detail-playlist/detail-playlist.component';
 
 
 
 @NgModule({
-  declarations: [AddPlaylistComponent, EditPlaylistComponent, ListPlaylistComponent],
+  declarations: [AddPlaylistComponent, EditPlaylistComponent, ListPlaylistComponent, ItemPlaylistComponent, DetailPlaylistComponent],
   imports: [
     CommonModule,
     HttpClientModule,

@@ -53,8 +53,7 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  Logout(event) {
-    sessionStorage.clear();
-    this.router.navigateByUrl('/home');
+  Logout() {
+    this.tokenStorage.signOut();
   }
 }

@@ -5,8 +5,6 @@ import {PmComponent} from './pm/pm.component';
 import {AdminComponent} from './admin/admin.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
-import {Login1Component} from './login1/login1.component';
-import {Register1Component} from './register1/register1.component';
 import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
@@ -20,20 +18,12 @@ const routes: Routes = [
     // runGuardsAndResolvers: 'always'
   },
   {
-    path: 'login1',
-    component: Login1Component,
-  },
-  {
     path: 'login',
     component: LoginComponent,
   },
   {
     path: 'register',
     component: RegisterComponent
-  },
-  {
-    path: 'Register1',
-    component: Register1Component
   },
   {
     path: 'home',

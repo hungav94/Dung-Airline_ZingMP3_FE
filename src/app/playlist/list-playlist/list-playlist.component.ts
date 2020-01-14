@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Playlist} from '../Playlist';
+import {Router} from '@angular/router';
+import {PlaylistService} from '../playlist.service';
+import {DataTransferService} from '../../data-transfer.service';
+import {Song} from '../../song/Song';
+import {SongService} from '../../song/song.service';
 
 @Component({
   selector: 'app-list-playlist',
@@ -7,9 +13,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPlaylistComponent implements OnInit {
 
-  constructor() { }
+  playlistById: Playlist;
+  playlist: Playlist[];
+  songList: Song[];
+
+  constructor(private router: Router,
+              private playlistService: PlaylistService,
+              private songService: SongService,
+              private dataTransfer: DataTransferService) {
+  }
 
   ngOnInit() {
+    this.loadPlaylist();
+  }
+
+  loadPlaylist() {
+    this.playlistService.getPlaylist().subscribe(result => {
+      this.playlist = result;
+    });
+  }
+
+  goToPlaylistDetail(id: number) {
+    this.playlistService.getPlaylistById(id).subscribe(result => {
+      this.playlistById = result;
+      this.dataTransfer.setData(this.playlistById);
+      this.router.navigateByUrl('/playlist/detail-playList');
+    });
   }
 
 }

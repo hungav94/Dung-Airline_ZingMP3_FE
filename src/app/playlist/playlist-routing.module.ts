@@ -3,11 +3,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {ListPlaylistComponent} from './list-playlist/list-playlist.component';
 import {AddPlaylistComponent} from './add-playlist/add-playlist.component';
 import {EditPlaylistComponent} from './edit-playlist/edit-playlist.component';
+import {DetailPlaylistComponent} from './detail-playlist/detail-playlist.component';
 
 
 const routes: Routes = [
   {
-    path: 'playList',
+    path: '',
     component: ListPlaylistComponent
   },
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'edit-playList',
     component: EditPlaylistComponent
+  },
+  {
+    path: 'detail-playList',
+    component: DetailPlaylistComponent
   }
 ];
 @NgModule({
