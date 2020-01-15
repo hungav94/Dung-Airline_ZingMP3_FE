@@ -1,17 +1,29 @@
 <div class="col-6" style="float: left">
   <input type="text" placeholder="search">
+  <div class="col-5"  *ngFor="let itemSong of songList">
+    <span>{{itemSong.name}}</span>
+    <input type="button" value="chon" (click)="addSongToPlaylist(songList.indexOf(itemSong))">
+  </div>
 <!--  <div class="col-5"  *ngFor="let itemSong of songList">-->
 <!--    <span>{{itemSong.name}}</span>-->
 <!--    <input type="button" value="chon" (change)="addSongToPlaylist(songList.indexOf(itemSong))">-->
 <!--  </div>-->
-  <app-all-song></app-all-song>
+<!--  <app-all-song></app-all-song>-->
 </div>
 
 <div class="col-6" style="float: left">
 <!--  <h3>{{playlist.playlistName}}</h3>-->
-<!--  <div class="col-5">-->
+
+  <div class="col-5">
+    <form [formGroup]="playlistForm" (ngSubmit)="onSubmit()">
+      <p>1</p>
+      <div class="col-5" *ngFor="let item of playlist.songs">
+        <span (change)="onChangeBox(item.id, $event)">{{item.name}}</span>
+        <input type="button" value="xoa" (click)="deleteSongToPlaylist(playlist.songs.indexOf(item))">
+      </div>
+    </form>
 <!--    <p>{{item.name}}</p>-->
 <!--    <input type="button" value="xoa" (change)="deleteSongToPlaylist(playlist.songs.indexOf(item))">-->
-<!--  </div>-->
-  <app-song-playlist [playlist]="playlist"></app-song-playlist>
+  </div>
+<!--  <app-song-playlist [playlist]="playlist"></app-song-playlist>-->
 </div>

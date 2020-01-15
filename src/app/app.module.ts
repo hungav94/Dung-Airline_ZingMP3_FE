@@ -13,8 +13,6 @@ import { RegisterComponent } from './register/register.component';
 import { PmComponent } from './pm/pm.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
-import { Login1Component } from './login1/login1.component';
-import { Register1Component } from './register1/register1.component';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
 
 @NgModule({
@@ -28,8 +26,6 @@ import {httpInterceptorProviders} from './auth/auth-interceptor';
     AdminComponent,
     LoginComponent,
     RegisterComponent,
-    Login1Component,
-    Register1Component,
   ],
   imports: [
     BrowserModule,

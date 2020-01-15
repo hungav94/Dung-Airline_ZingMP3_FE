@@ -25,7 +25,7 @@ export class PlaylistService {
     return this.http.post(this.url, formData);
   }
 
-  editPlaylist(formData: FormData) {
+  editPlaylist(formData: FormData): Observable<any> {
     return this.http.put(this.url, formData);
   }
 

@@ -12,6 +12,7 @@ import {TokenStorageService} from '../auth/token-storage.service';
 export class MenuComponent implements OnInit {
   private roles: string[];
   private authority: string;
+  private userName: string;
 
   constructor(private router: Router,
               private songService: SongService,
@@ -22,6 +23,11 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
       this.roles = this.tokenStorage.getAuthorities();
+      if (this.tokenStorage.getUsername() === undefined) {
+        this.userName = 'Đăng nhập';
+      } else {
+        this.userName = this.tokenStorage.getUsername();
+      }
       this.roles.every(role => {
         if (role === 'ROLE_ADMIN') {
           this.authority = 'admin';
@@ -50,7 +56,7 @@ export class MenuComponent implements OnInit {
         this.dataTransfer.setData(song);
         this.router.navigateByUrl('/song/songList');
       });
-}
+    }
   }
 
 }
