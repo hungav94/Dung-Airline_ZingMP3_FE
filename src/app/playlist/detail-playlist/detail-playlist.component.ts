@@ -21,6 +21,7 @@ export class DetailPlaylistComponent implements OnInit {
   avatar: any = File;
   fileMp3: any = File;
   playlistForm: FormGroup;
+  isAddSongToPlaylist = false;
 
   constructor(private playlistService: PlaylistService,
               private fb: FormBuilder,
@@ -35,14 +36,14 @@ export class DetailPlaylistComponent implements OnInit {
     this.playlist = this.dataTransfer.getDataPlaylist();
     if (this.playlist.songs !== undefined) {
       this.songList = this.dataTransfer.getDataSong();
-      console.log(this.songList.length);
       this.spliceSongs(this.playlist, this.songList);
     }
     this.playlistForm = this.fb.group({
       id: [this.playlist.id],
       playlistName: [this.playlist.playlistName],
       playlistDescription: [this.playlist.playlistDescription],
-      avatarPlaylist: [this.playlist.avatarPlaylist]
+      // avatarPlaylist: [this.playlist.avatarPlaylist],
+      songs: this.fb.array([]),
     });
   }
 
@@ -57,9 +58,10 @@ export class DetailPlaylistComponent implements OnInit {
   }
 
   addSongToPlaylist(index: number) {
+    this.isAddSongToPlaylist = true;
     // this.playlist.songs.push(this.songList[index]);
     // this.dataTransfer.setDataSongPlaylist(this.playlist);
-    console.log(index);
+    // console.log(index);
     console.log(this.songList[index]);
     this.songToPlaylist = this.songList[index];
     this.songList.splice(index, 1);
@@ -73,6 +75,7 @@ export class DetailPlaylistComponent implements OnInit {
   }
 
   deleteSongToPlaylist(index: number) {
+    this.isAddSongToPlaylist = false;
     console.log(this.playlist.songs);
     // this.songList.push(this.playlist.songs[index]);
     this.songToPlaylist = this.playlist.songs[index];
@@ -83,16 +86,23 @@ export class DetailPlaylistComponent implements OnInit {
 
   onSubmit() {
     const playlistForm = this.playlistForm.value;
+    console.log(playlistForm);
     this.formData.append('playlist', JSON.stringify(playlistForm));
     this.playlistService.editPlaylist(this.formData).subscribe(result => {
       this.playlist = result;
     });
   }
 
-  onChangeBox(id: number, event) {
+  onChangeBox(id: number) {
+    console.log(1);
     const songFormArray = this.playlistForm.controls.songs as FormArray;
+    if (this.playlist.songs.length !== 0) {
+      for (let i = 0; i < this.playlist.songs.length; i++) {
+        songFormArray.push(new FormControl(this.playlist.songs[i].id));
+      }
+    }
     console.log(new FormControl(id));
-    if (event.target.checked) {
+    if (this.isAddSongToPlaylist) {
       songFormArray.push(new FormControl(id));
     } else {
       const index = songFormArray.controls.findIndex(x => x.value === id);
@@ -100,11 +110,11 @@ export class DetailPlaylistComponent implements OnInit {
     }
   }
 
-  checkSongs(c: AbstractControl) {
-    const v = c.value;
-    return (v.songList.length !== 0) ? null : {
-      emptySong: true
-    };
-  }
+  // checkSongs(c: AbstractControl) {
+  //   const v = c.value;
+  //   return (v.songList.length !== 0) ? null : {
+  //     emptySong: true
+  //   };
+  // }
 
 }

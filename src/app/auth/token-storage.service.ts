@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
@@ -13,7 +13,7 @@ export class TokenStorageService {
   constructor() {
   }
 
-  public signOut() {
+  signOut() {
     window.sessionStorage.clear();
   }
 
@@ -51,5 +51,4 @@ export class TokenStorageService {
 
     return this.roles;
   }
-
 }
