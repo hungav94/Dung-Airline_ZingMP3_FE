@@ -21,13 +21,10 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userName = 'Đăng nhập';
     if (this.tokenStorage.getToken()) {
       this.roles = this.tokenStorage.getAuthorities();
-      if (this.tokenStorage.getUsername() === undefined) {
-        this.userName = 'Đăng nhập';
-      } else {
-        this.userName = this.tokenStorage.getUsername();
-      }
+      this.userName = this.tokenStorage.getUsername();
       this.roles.every(role => {
         if (role === 'ROLE_ADMIN') {
           this.authority = 'admin';
@@ -59,4 +56,7 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  Logout() {
+    this.tokenStorage.signOut();
+  }
 }
