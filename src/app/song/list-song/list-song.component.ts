@@ -32,6 +32,15 @@ export class ListSongComponent implements OnInit {
     // this.refreshSongList();
   }
 
+  searchSong() {
+    const tmp = this.dataTransferService.getData();
+    if (tmp === undefined) {
+      this.refreshSongList();
+    } else {
+      this.songList = tmp;
+    }
+  }
+
   refreshSongList() {
     this.songService.getSongList().subscribe(result => {
       this.songList = result;
@@ -50,14 +59,5 @@ export class ListSongComponent implements OnInit {
   editSong(item: Song) {
     this.dataTransferService.setData(item);
     this.router.navigateByUrl('/song/editSong');
-  }
-
-  searchSong() {
-    const tmp = this.dataTransferService.getData();
-    if (tmp === undefined) {
-      this.refreshSongList();
-    } else {
-      this.songList = tmp;
-    }
   }
 }

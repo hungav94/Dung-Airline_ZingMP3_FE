@@ -25,19 +25,19 @@ export class AddPlaylistComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadSongList();
+    // this.loadSongList();
     this.playlistForm = this.fb.group({
       playlistName: [''],
       playlistDescription: [''],
-      songs: this.fb.array([])
+      // songs: this.fb.array([])
     });
   }
 
-  loadSongList() {
-    this.songService.getSongList().subscribe(data => {
-      this.songList = data;
-    });
-  }
+  // loadSongList() {
+  //   this.songService.getSongList().subscribe(data => {
+  //     this.songList = data;
+  //   });
+  // }
 
   onChangeAvatar(event) {
     const file = event.target.files[0];

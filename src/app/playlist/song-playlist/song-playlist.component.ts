@@ -1,26 +1,27 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Playlist} from '../Playlist';
+import {Song} from '../../song/Song';
 import {PlaylistService} from '../playlist.service';
+import {SongService} from '../../song/song.service';
 import {Router} from '@angular/router';
 import {DataTransferService} from '../../data-transfer.service';
-import {SongService} from '../../song/song.service';
-import {Song} from '../../song/Song';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'app-detail-playlist',
-  templateUrl: './detail-playlist.component.html',
-  styleUrls: ['./detail-playlist.component.scss']
+  selector: 'app-song-playlist',
+  templateUrl: './song-playlist.component.html',
+  styleUrls: ['./song-playlist.component.scss']
 })
-export class DetailPlaylistComponent implements OnInit {
+export class SongPlaylistComponent implements OnInit {
 
-  playlist: Playlist;
-  songList: Song[];
-  songToPlaylist: Song;
+  @Input() playlist: Playlist;
+  playlistData: Playlist;
+  songList = [];
+  playlistForm: FormGroup;
+  selectedValue = null;
   formData = new FormData();
   avatar: any = File;
   fileMp3: any = File;
-  playlistForm: FormGroup;
 
   constructor(private playlistService: PlaylistService,
               private fb: FormBuilder,
@@ -30,14 +31,8 @@ export class DetailPlaylistComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.loadSongList();
-    // this.playlist = this.dataTransfer.getDataPlaylist();
-    this.playlist = this.dataTransfer.getDataPlaylist();
-    if (this.playlist.songs !== undefined) {
-      this.songList = this.dataTransfer.getDataSong();
-      console.log(this.songList.length);
-      this.spliceSongs(this.playlist, this.songList);
-    }
+    // this.playlist = this.dataTransfer.getData();
+    this.playlistData = this.dataTransfer.getDataSongPlaylist();
     this.playlistForm = this.fb.group({
       id: [this.playlist.id],
       playlistName: [this.playlist.playlistName],
@@ -46,37 +41,9 @@ export class DetailPlaylistComponent implements OnInit {
     });
   }
 
-  spliceSongs(playlist: Playlist, songList: Song[]) {
-    for (let i = 0; i < songList.length; i++) {
-      for (let j = 0; j < playlist.songs.length; j++) {
-        if (songList[i].name === playlist.songs[j].name) {
-          this.songList.splice(i, 1);
-        }
-      }
-    }
-  }
-
-  addSongToPlaylist(index: number) {
-    // this.playlist.songs.push(this.songList[index]);
-    // this.dataTransfer.setDataSongPlaylist(this.playlist);
-    console.log(index);
-    console.log(this.songList[index]);
-    this.songToPlaylist = this.songList[index];
-    this.songList.splice(index, 1);
-    this.playlist.songs.push(this.songToPlaylist);
-  }
-
-  loadSongList() {
-    this.songService.getSongList().subscribe(data => {
-      this.songList = data;
-    });
-  }
-
   deleteSongToPlaylist(index: number) {
     console.log(this.playlist.songs);
-    // this.songList.push(this.playlist.songs[index]);
-    this.songToPlaylist = this.playlist.songs[index];
-    this.songList.push(this.songToPlaylist);
+    this.songList.push(this.playlist.songs[index]);
     this.dataTransfer.setDataSongPlaylist(this.songList);
     this.playlist.songs.splice(index, 1);
   }
@@ -106,5 +73,4 @@ export class DetailPlaylistComponent implements OnInit {
       emptySong: true
     };
   }
-
 }

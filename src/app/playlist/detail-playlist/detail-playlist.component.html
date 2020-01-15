@@ -1,25 +1,29 @@
-<h2>danh sach</h2>
-<table class="table">
-  <thead>
-  <tr>
-    <th scope="col" hidden>#</th>
-    <th scope="col">Tên bài hát</th>
-    <th scope="col">Avatar</th>
-    <th scope="col">Nghe Nhạc</th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody *ngFor="let item of playlist.songs">
-  <tr>
-    <td scope="row" hidden>{{item.id}}</td>
-    <td>{{item.name}}</td>
-    <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
-    <td>
-      <audio controls>
-        <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/mpeg">
-        <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/ogg">
-      </audio>
-    </td>
-  </tr>
-  </tbody>
-</table>
+<div class="col-6" style="float: left">
+  <input type="text" placeholder="search">
+  <div class="col-5"  *ngFor="let itemSong of songList">
+    <span>{{itemSong.name}}</span>
+    <input type="button" value="chon" (click)="addSongToPlaylist(songList.indexOf(itemSong))">
+  </div>
+<!--  <div class="col-5"  *ngFor="let itemSong of songList">-->
+<!--    <span>{{itemSong.name}}</span>-->
+<!--    <input type="button" value="chon" (change)="addSongToPlaylist(songList.indexOf(itemSong))">-->
+<!--  </div>-->
+<!--  <app-all-song></app-all-song>-->
+</div>
+
+<div class="col-6" style="float: left">
+<!--  <h3>{{playlist.playlistName}}</h3>-->
+
+  <div class="col-5">
+    <form [formGroup]="playlistForm" (ngSubmit)="onSubmit()">
+      <p>1</p>
+      <div class="col-5" *ngFor="let item of playlist.songs">
+        <span (change)="onChangeBox(item.id, $event)">{{item.name}}</span>
+        <input type="button" value="xoa" (click)="deleteSongToPlaylist(playlist.songs.indexOf(item))">
+      </div>
+    </form>
+<!--    <p>{{item.name}}</p>-->
+<!--    <input type="button" value="xoa" (change)="deleteSongToPlaylist(playlist.songs.indexOf(item))">-->
+  </div>
+<!--  <app-song-playlist [playlist]="playlist"></app-song-playlist>-->
+</div>

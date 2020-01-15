@@ -4,14 +4,14 @@
     <div class="menu-bar">
       <div class="nav">
         <ul class="nav">
-          <li class=""><a class="nav-link text-uppercase active btn" routerLink="">Trang chủ</a></li>
-          <li class=""><a class="nav-link text-uppercase btn " href="#">#zingchart</a></li>
-          <li class=""><a class="nav-link text-uppercase btn " href="#">Top 100</a></li>
-          <li class=""><a class="nav-link text-uppercase btn" href="#">Chủ đề</a></li>
-          <li class="--z--shrink"><a class="nav-link text-uppercase btn " href="#">MV</a></li>
-          <li class="--z--shrink"><a class="nav-link text-uppercase btn" routerLink="song/songList">Album</a></li>
-          <li class="--z--shrink"><a class="nav-link text-uppercase btn" href="#">Nghệ sĩ</a></li>
-          <li><a class="nav-link btn" routerLink="/playlist">NHẠC CÁ NHÂN</a></li>
+          <li class=""><a class="nav-link text-uppercase active" routerLink="">Trang chủ</a></li>
+          <li class=""><a class="nav-link text-uppercase " href="#">#zingchart</a></li>
+          <li class=""><a class="nav-link text-uppercase " href="#">Top 100</a></li>
+          <li class=""><a class="nav-link text-uppercase " href="#">Chủ đề</a></li>
+          <li class="--z--shrink"><a class="nav-link text-uppercase " href="#">MV</a></li>
+          <li class="--z--shrink"><a class="nav-link text-uppercase " routerLink="song/songList">Album</a></li>
+          <li class="--z--shrink"><a class="nav-link text-uppercase " href="#">Nghệ sĩ</a></li>
+          <li><a class="nav-link " routerLink="/playlist">NHẠC CÁ NHÂN</a></li>
         </ul>
       </div>
     </div>
@@ -46,13 +46,13 @@
           <ul class="nav">
             <div class="card-info">
               <div class="title mar-top-10 dropdown">
-                <a role="button" class="btn" type="button" routerLink="auth/login" >Đăng Nhập</a>
+                <a role="button" class="btn" type="button" routerLink="auth/login" >{{userName}}</a>
                 <a role="button" class="btn dropdown-toggle" type="button"
                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false"></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <ul class="z-user-menu-list dropdown-item">
-                    <li><a><i class="icon ic-brightness"></i><a routerLink="/register">Đăng ký</a><i
+                    <li><a><i class="icon ic-brightness"></i><span routerLink="/register">Đăng ký</span><i
                       class="icon ic-svg-switch z-switch-off"></i></a>
                     </li>
                   </ul>

@@ -14,7 +14,7 @@ export class ItemPlaylistComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.playlist.songs);
+    // console.log(this.playlist.songs);
   }
 
   emitView() {

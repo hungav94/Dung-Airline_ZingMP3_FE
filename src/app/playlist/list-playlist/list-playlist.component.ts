@@ -25,6 +25,7 @@ export class ListPlaylistComponent implements OnInit {
 
   ngOnInit() {
     this.loadPlaylist();
+    this.loadSongList();
   }
 
   loadPlaylist() {
@@ -38,6 +39,13 @@ export class ListPlaylistComponent implements OnInit {
       this.playlistById = result;
       this.dataTransfer.setData(this.playlistById);
       this.router.navigateByUrl('/playlist/detail-playList');
+    });
+  }
+
+  loadSongList() {
+    this.songService.getSongList().subscribe(data => {
+      this.songList = data;
+      this.dataTransfer.setDataSong(this.songList);
     });
   }
 
