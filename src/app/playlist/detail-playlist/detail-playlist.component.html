@@ -1,18 +1,43 @@
+
 <div class="col-6" style="float: left">
+  <br>
   <input type="text" placeholder="search">
-  <div class="col-5" *ngFor="let itemSong of songList">
-    <span>{{itemSong.name}}</span>
-    <input type="button" value="chon" (click)="addSongToPlaylist(songList.indexOf(itemSong)); onChangeBox(itemSong.id)">
-  </div>
+  <br>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Danh sách bài hát</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let itemSong of songList">
+      <td>{{itemSong.name}}</td>
+      <td><input type="button" value="Thêm vào Playlist"
+                 (click)="addSongToPlaylist(itemSong); onChangeBox(itemSong.id)"></td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 
 <div class="col-6" style="float: left">
   <p>{{playlist.playlistName}}</p>
   <form [formGroup]="playlistForm" (ngSubmit)="onSubmit()">
-    <input type="submit" value="Luu">
-    <div class="col-5" *ngFor="let item of playlist.songs">
-      <span>{{item.name}}</span>
-      <input type="button" value="xoa" (click)="deleteSongToPlaylist(playlist.songs.indexOf(item)); onChangeBox(item.id)">
-    </div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Danh sách bài hát</th>
+        <th><input type="submit" value="Lưu"></th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let item of playlist.songs">
+      <tr>
+        <td>{{item.name}}</td>
+        <td><input type="button" value="xoa"
+                   (click)="deleteSongToPlaylist(item); onChangeBox(item.id)"></td>
+      </tr>
+      </tbody>
+    </table>
   </form>
+
 </div>

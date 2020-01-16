@@ -25,7 +25,7 @@ export class ListSongComponent implements OnInit {
     this.searchSong();
     this.$searchName = this.dataTransferService.getDataAsObservarble();
     console.log(this.$searchName);
-    this.$searchName.subscribe( songList => {
+    this.$searchName.subscribe(songList => {
       // console.log(songList);
       this.songList = songList;
     });
@@ -59,5 +59,9 @@ export class ListSongComponent implements OnInit {
   editSong(item: Song) {
     this.dataTransferService.setData(item);
     this.router.navigateByUrl('/song/editSong');
+  }
+
+  goToViewSong(id: number) {
+
   }
 }

@@ -3,25 +3,32 @@
   <button lass="btn btn-danger" routerLink="/song/addSong">Create Song</button>
 </div>
 <br>
+
+<!--<div class="row">-->
+<!--  <div class="col-12" *ngFor="let item of songList" style="padding-top: 10px; margin-top: 10px; margin-left: 30px">-->
+<!--    <app-view-song [songList]="item" (viewClicked)="goToViewSong(item.id)"></app-view-song>-->
+<!--  </div>-->
+<!--</div>-->
+
 <table class="table">
   <thead>
   <tr>
+    <th scope="col">Avatar</th>
     <th scope="col"hidden >#</th>
     <th scope="col">Tên bài hát</th>
     <th scope="col">Mô tả</th>
-    <th scope="col">Ngày phát hành</th>
-    <th scope="col">Avatar</th>
+    <th scope="col" hidden>Ngày phát hành</th>
     <th scope="col">Nghe Nhạc</th>
     <th></th>
   </tr>
   </thead>
   <tbody *ngFor="let item of songList">
   <tr>
+    <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
     <th scope="row" hidden>{{item.id}}</th>
     <td>{{item.name}}</td>
     <td>{{item.description}}</td>
     <td hidden>{{item.dateUpLoad}}</td>
-    <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
     <td>
       <audio controls>
         <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/mpeg">
@@ -34,3 +41,4 @@
   </tr>
   </tbody>
 </table>
+

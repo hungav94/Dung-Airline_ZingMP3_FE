@@ -39,7 +39,9 @@ export class DataTransferService {
   }
 
   getDataPlaylist() {
-    return this.data;
+    const tmp = this.data;
+    // this.data = undefined;
+    return tmp;
   }
 
   clearData() {
