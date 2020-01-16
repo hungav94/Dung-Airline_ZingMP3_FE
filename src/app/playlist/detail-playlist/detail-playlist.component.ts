@@ -77,10 +77,8 @@ export class DetailPlaylistComponent implements OnInit {
   deleteSongToPlaylist(index: number) {
     this.isAddSongToPlaylist = false;
     console.log(this.playlist.songs);
-    // this.songList.push(this.playlist.songs[index]);
     this.songToPlaylist = this.playlist.songs[index];
     this.songList.push(this.songToPlaylist);
-    this.dataTransfer.setDataSongPlaylist(this.songList);
     this.playlist.songs.splice(index, 1);
   }
 
@@ -90,6 +88,7 @@ export class DetailPlaylistComponent implements OnInit {
     this.formData.append('playlist', JSON.stringify(playlistForm));
     this.playlistService.editPlaylist(this.formData).subscribe(result => {
       this.playlist = result;
+      this.route.navigateByUrl('/playlist');
     });
   }
 

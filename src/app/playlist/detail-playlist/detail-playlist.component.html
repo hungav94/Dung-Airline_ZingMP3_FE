@@ -2,7 +2,7 @@
   <input type="text" placeholder="search">
   <div class="col-5" *ngFor="let itemSong of songList">
     <span>{{itemSong.name}}</span>
-    <input type="button" value="chon" (click)="addSongToPlaylist(songList.indexOf(itemSong)); onChangeBox(itemSong.id)">
+    <input type="button" value="chon" (click)="addSongToPlaylist(songList.indexOf(itemSong, 0)); onChangeBox(itemSong.id)">
   </div>
 </div>
 
@@ -12,7 +12,7 @@
     <input type="submit" value="Luu">
     <div class="col-5" *ngFor="let item of playlist.songs">
       <span>{{item.name}}</span>
-      <input type="button" value="xoa" (click)="deleteSongToPlaylist(playlist.songs.indexOf(item)); onChangeBox(item.id)">
+      <input type="button" value="xoa" (click)="deleteSongToPlaylist(playlist.songs.indexOf(item, 0)); onChangeBox(item.id)">
     </div>
   </form>
 </div>
