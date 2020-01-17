@@ -3,7 +3,7 @@ import {ListSongComponent} from './list-song/list-song.component';
 import {NgModule} from '@angular/core';
 import {AddSongComponent} from './add-song/add-song.component';
 import {EditSongComponent} from './edit-song/edit-song.component';
-import {ViewSongComponent} from './view-song/view-song.component';
+
 
 const routes: Routes = [
   {
@@ -17,10 +17,6 @@ const routes: Routes = [
   {
     path: 'editSong',
     component: EditSongComponent
-  },
-  {
-    path: 'view',
-    component: ViewSongComponent
   }
 ];
 

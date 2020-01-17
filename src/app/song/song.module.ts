@@ -9,11 +9,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {SongService} from './song.service';
 import {httpInterceptorProviders} from '../auth/auth-interceptor';
-import { ViewSongComponent } from './view-song/view-song.component';
+
 
 
 @NgModule({
-  declarations: [AddSongComponent, EditSongComponent, ListSongComponent, ViewSongComponent],
+  declarations: [AddSongComponent, EditSongComponent, ListSongComponent],
   imports: [
     CommonModule,
     FormsModule,
