@@ -24,7 +24,8 @@ export class DetailPlaylistComponent implements OnInit {
   playlistForm: FormGroup;
   isAddSongToPlaylist = false;
 
-  constructor(private playlistService: PlaylistService,
+  constructor(private router: Router,
+              private playlistService: PlaylistService,
               private fb: FormBuilder,
               private songService: SongService,
               private route: Router,
@@ -107,4 +108,12 @@ export class DetailPlaylistComponent implements OnInit {
   //   };
   // }
 
+  deletePlaylist(id: number) {
+    if (confirm('Are You Sure You delete this playlist ?')) {
+
+      this.playlistService.deletePlaylist(id).subscribe(re => {
+        this.router.navigateByUrl('/playlist');
+      });
+    }
+  }
 }

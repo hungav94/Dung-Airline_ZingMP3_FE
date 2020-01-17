@@ -1,4 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {PlaylistService} from '../playlist.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-item-playlist',
@@ -20,5 +22,4 @@ export class ItemPlaylistComponent implements OnInit {
   emitView() {
     this.viewClicked.emit();
   }
-
 }

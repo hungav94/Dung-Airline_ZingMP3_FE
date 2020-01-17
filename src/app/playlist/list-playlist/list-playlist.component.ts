@@ -5,6 +5,7 @@ import {PlaylistService} from '../playlist.service';
 import {DataTransferService} from '../../data-transfer.service';
 import {Song} from '../../song/Song';
 import {SongService} from '../../song/song.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-list-playlist',
@@ -16,6 +17,7 @@ export class ListPlaylistComponent implements OnInit {
   playlistById: Playlist;
   playlist: Playlist[];
   songList: Song[];
+  $searchName: Observable<any>;
 
   constructor(private router: Router,
               private playlistService: PlaylistService,
@@ -24,8 +26,23 @@ export class ListPlaylistComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadPlaylist();
+    this.searchPlaylist();
+    this.$searchName = this.dataTransfer.getDataAsObservarble();
+    this.$searchName.subscribe(playlist => {
+      console.log(playlist);
+      this.playlist = playlist;
+    });
+
     this.loadSongList();
+  }
+
+  searchPlaylist() {
+    const tmp = this.dataTransfer.getData();
+    if (tmp === undefined) {
+      this.loadPlaylist();
+    } else {
+      this.songList = tmp;
+    }
   }
 
   loadPlaylist() {
@@ -48,5 +65,23 @@ export class ListPlaylistComponent implements OnInit {
       this.dataTransfer.setDataSong(this.songList);
     });
   }
+
+  Search(event) {
+    console.log(1);
+    const search = event.target.value;
+    if (search === '') {
+      this.playlistService.getPlaylist().subscribe(result => {
+        const playlists = result;
+        this.dataTransfer.setData(playlists);
+      });
+    } else {
+      this.playlistService.searchByNamePlaylist(search).subscribe(result => {
+        const playlists = result;
+        this.dataTransfer.setData(playlists);
+        // this.router.navigateByUrl('/playlist');
+      });
+    }
+  }
+
 
 }

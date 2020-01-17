@@ -22,7 +22,9 @@
 
 <div class="col-6" style="float: left">
   <p>{{playlist.playlistName}}</p>
+  <input  type="button" value="xoa" (click)="deletePlaylist(playlist.id)">
   <form [formGroup]="playlistForm" (ngSubmit)="onSubmit()">
+
     <table class="table">
       <thead>
       <tr>
