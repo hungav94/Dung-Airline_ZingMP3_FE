@@ -22,14 +22,13 @@ export class ListSongComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(1);
     this.searchSong();
     this.$searchName = this.dataTransferService.getDataAsObservarble();
-    console.log(this.$searchName);
     this.$searchName.subscribe(songList => {
-      // console.log(songList);
       this.songList = songList;
+      console.log(this.songList);
     });
-    // this.refreshSongList();
   }
 
   searchSong() {

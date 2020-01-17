@@ -41,7 +41,7 @@ export class ListPlaylistComponent implements OnInit {
     if (tmp === undefined) {
       this.loadPlaylist();
     } else {
-      this.songList = tmp;
+      this.playlist = tmp;
     }
   }
 
@@ -67,7 +67,6 @@ export class ListPlaylistComponent implements OnInit {
   }
 
   Search(event) {
-    console.log(1);
     const search = event.target.value;
     if (search === '') {
       this.playlistService.getPlaylist().subscribe(result => {

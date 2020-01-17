@@ -50,7 +50,6 @@ export class DataTransferService {
 
   getData() {
     const tmp = this.data;
-    this.clearData();
     return tmp;
   }
 }

@@ -7,6 +7,7 @@ import {SongService} from '../../song/song.service';
 import {Song} from '../../song/Song';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {findIndex} from 'rxjs/operators';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-detail-playlist',
@@ -24,19 +25,20 @@ export class DetailPlaylistComponent implements OnInit {
   playlistForm: FormGroup;
   isAddSongToPlaylist = false;
 
-  constructor(private router: Router,
+  constructor(
               private playlistService: PlaylistService,
               private fb: FormBuilder,
               private songService: SongService,
               private route: Router,
-              private dataTransfer: DataTransferService) {
+              private dataTransfer: DataTransferService,
+              private location: Location) {
   }
 
   ngOnInit() {
     // this.loadSongList();
     this.playlist = this.dataTransfer.getDataPlaylist();
     this.songList = this.dataTransfer.getDataSong();
-    // console.log(this.songList);
+    console.log(this.songList);
     console.log(this.playlist);
     if (this.playlist.songs.length !== 0) {
       this.spliceSongs(this.playlist, this.songList);
@@ -88,7 +90,7 @@ export class DetailPlaylistComponent implements OnInit {
     this.playlistService.editPlaylist(this.formData).subscribe(result => {
       this.playlist = result;
       this.dataTransfer.setData(this.playlist);
-      this.route.navigateByUrl('/playlist');
+      this.goBack();
     });
   }
 
@@ -112,8 +114,14 @@ export class DetailPlaylistComponent implements OnInit {
     if (confirm('Are You Sure You delete this playlist ?')) {
 
       this.playlistService.deletePlaylist(id).subscribe(re => {
-        this.router.navigateByUrl('/playlist');
+        this.goBack();
       });
     }
+  }
+
+  goBack() {
+    this.route.navigate(['/playlist']).then(() => {
+        window.location.reload();
+      });
   }
 }
