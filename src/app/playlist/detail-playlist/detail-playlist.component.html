@@ -1,0 +1,18 @@
+<div class="col-6" style="float: left">
+<!--  <input type="text" placeholder="search">-->
+  <div class="col-5" *ngFor="let itemSong of songList">
+    <span>{{itemSong.name}}</span>
+    <input type="button" value="Select" (click)="addSongToPlaylist(songList.indexOf(itemSong)); onChangeBox(itemSong.id)">
+  </div>
+</div>
+
+<div class="col-6" style="float: left">
+  <p>{{playlist.playlistName}}</p>
+  <form [formGroup]="playlistForm" (ngSubmit)="onSubmit()">
+    <input type="submit" value="Save">
+    <div class="col-5" *ngFor="let item of playlist.songs">
+      <span>{{item.name}}</span>
+      <input type="button" value="Delete" (click)="deleteSongToPlaylist(playlist.songs.indexOf(item)); onChangeBox(item.id)">
+    </div>
+  </form>
+</div>

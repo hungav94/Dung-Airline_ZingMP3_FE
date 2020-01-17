@@ -1,4 +1,4 @@
-<div class="col-form-label" style="text-shadow: magenta 2px 2px 6px; font-weight: bolder; margin-left: 50%">
+<div class="col-form-label" style="text-shadow: magenta 2px 2px 6px; font-weight: bolder; margin-left: auto">
   Edit Song
 </div>
 <form [formGroup]="songForm" (ngSubmit)="onSubmit()" class="col-8 offset-3" style="margin-top: 50px" enctype="multipart/form-data">
@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <div class="form-group row">
+  <div class="form-group row" hidden>
     <label class="col-2 col-form-label">Date Upload:</label>
     <div class="col-10">
       <input class="form-control" type="text" formControlName="dateUpload">
@@ -31,14 +31,14 @@
 
   <div class="form-group row">
     <label class="col-2 col-form-label">Avatar:</label>
-    <img src="http://localhost:8083/image/{{song.avatar}}" style="width: 100px; height: 100px">
-    <div class="col-10">
+    <img src="http://localhost:8083/file/{{song.avatar}}" style="width: 100px; height: 100px">
+    <div class="col-10" >
       <input class="form-control" type="file" (change)="onchangeAvatar($event)">
     </div>
   </div>
 
   <div class=" row">
     <button class="btn btn-info" type="submit" style="margin-left: 20%">Submit</button>
-    <button class="btn btn-info" type="button" routerLink="/songList" style="margin-left: 150px">Back</button>
+    <button class="btn btn-info" type="button" routerLink="/song/songList" style="margin-left: 150px">Back</button>
   </div>
 </form>

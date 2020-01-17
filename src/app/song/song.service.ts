@@ -28,4 +28,8 @@ export class SongService {
   editSong(formData: FormData): Observable<any> {
     return this.http.put(this.url, formData);
   }
+
+  searchSongByName(nameSong: string): Observable<Song[]> {
+    return this.http.get<Song[]>(this.url + '-search/' + nameSong);
+  }
 }

@@ -8,6 +8,7 @@ import {SongRouting} from './song-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {SongService} from './song.service';
+import {httpInterceptorProviders} from '../auth/auth-interceptor';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import {SongService} from './song.service';
     ReactiveFormsModule,
     RouterModule
   ],
-  providers: [SongService]
+  providers: [SongService, httpInterceptorProviders]
 })
 export class SongModule {
 }

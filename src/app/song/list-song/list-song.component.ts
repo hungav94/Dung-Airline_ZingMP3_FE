@@ -3,6 +3,7 @@ import {Song} from '../Song';
 import {Router} from '@angular/router';
 import {SongService} from '../song.service';
 import {DataTransferService} from '../../data-transfer.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-list-song',
@@ -12,17 +13,32 @@ import {DataTransferService} from '../../data-transfer.service';
 export class ListSongComponent implements OnInit {
 
   songList: Song[];
+  $searchName: Observable<any>;
 
   constructor(private router: Router,
               private songService: SongService,
               private dataTransferService: DataTransferService) {
-    this.refreshSongList();
+    this.searchSong();
   }
 
   ngOnInit() {
-    this.songService.getSongList().subscribe(data => {
-      this.refreshSongList();
+    this.searchSong();
+    this.$searchName = this.dataTransferService.getDataAsObservarble();
+    console.log(this.$searchName);
+    this.$searchName.subscribe( songList => {
+      // console.log(songList);
+      this.songList = songList;
     });
+    // this.refreshSongList();
+  }
+
+  searchSong() {
+    const tmp = this.dataTransferService.getData();
+    if (tmp === undefined) {
+      this.refreshSongList();
+    } else {
+      this.songList = tmp;
+    }
   }
 
   refreshSongList() {
@@ -34,7 +50,7 @@ export class ListSongComponent implements OnInit {
   deleteSong(item: Song) {
     if (confirm('Are You Sure You delete this Song?')) {
       this.songService.deleteSong(item).subscribe(re => {
-        this.router.navigateByUrl('/songList');
+        this.router.navigateByUrl('/song/songList');
         this.refreshSongList();
       });
     }
@@ -42,6 +58,6 @@ export class ListSongComponent implements OnInit {
 
   editSong(item: Song) {
     this.dataTransferService.setData(item);
-    this.router.navigateByUrl('/editSong');
+    this.router.navigateByUrl('/song/editSong');
   }
 }

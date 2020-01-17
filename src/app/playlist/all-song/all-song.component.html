@@ -1,0 +1,4 @@
+<div class="col-5"  *ngFor="let itemSong of songList">
+  <span>{{itemSong.name}}</span>
+  <input type="button" value="chon" (click)="addSongToPlaylist(songList.indexOf(itemSong))">
+</div>

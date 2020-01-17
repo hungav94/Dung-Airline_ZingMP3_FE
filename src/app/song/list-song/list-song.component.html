@@ -1,31 +1,36 @@
+<br>
+<div>
+  <button lass="btn btn-danger" routerLink="/song/addSong">Create Song</button>
+</div>
+<br>
 <table class="table">
   <thead>
   <tr>
-    <th scope="col">#</th>
-    <th scope="col">Name</th>
-    <th scope="col">Description</th>
-    <th scope="col">Date Upload</th>
+    <th scope="col" hidden>#</th>
+    <th scope="col">Tên bài hát</th>
+    <th scope="col">Mô tả</th>
+    <th scope="col">Ngày phát hành</th>
     <th scope="col">Avatar</th>
-    <th scope="col">File MP3</th>
+    <th scope="col">Nghe Nhạc</th>
     <th></th>
   </tr>
   </thead>
   <tbody *ngFor="let item of songList">
   <tr>
-    <th scope="row">{{item.id}}</th>
+    <th scope="row" hidden>{{item.id}}</th>
     <td>{{item.name}}</td>
     <td>{{item.description}}</td>
     <td>{{item.dateUpLoad}}</td>
-    <td><img src="http://localhost:8083/image/{{item.avatar}}" style="width: 100px; height: 100px"></td>
+    <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
     <td>
       <audio controls>
-        <source src="http://localhost:8083/image/{{item.fileMp3}}" type="audio/mpeg">
-        <source src="http://localhost:8083/image/{{item.fileMp3}}" type="audio/ogg">
+        <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/mpeg">
+        <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/ogg">
       </audio>
 
     </td>
-    <td><button class="btn btn-danger" style="margin-left: 100px" type="button" (click)="deleteSong(item)">Delete</button></td>
-    <td><button class="btn btn-info" style="margin-left: 100px" type="button" (click)="editSong(item)">Edit</button></td>
+    <td><button class="btn btn-info" style="margin-left: 50px" type="button" (click)="editSong(item)">Edit</button></td>
+    <td><button class="btn btn-danger" style="margin-left: 50px" type="button" (click)="deleteSong(item)">Delete</button></td>
   </tr>
   </tbody>
 </table>

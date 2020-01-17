@@ -1,0 +1,8 @@
+<span>{{playlist.playlistName}}</span>
+
+<form [formGroup]="playlistForm" (ngSubmit)="onSubmit()">
+  <div class="col-5" *ngFor="let item of playlist.songs">
+    <span (change)="onChangeBox(item.id, $event)">{{item.name}}</span>
+    <input type="button" value="xoa" (click)="deleteSongToPlaylist(playlist.songs.indexOf(item))">
+  </div>
+</form>
