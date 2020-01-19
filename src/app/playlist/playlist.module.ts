@@ -9,10 +9,11 @@ import {RouterModule} from '@angular/router';
 import {PlaylistRoutingModule} from './playlist-routing.module';
 import {httpInterceptorProviders} from '../auth/auth-interceptor';
 import {PlaylistService} from './playlist.service';
-import {ItemPlaylistComponent} from './item-playlist/item-playlist.component';
 import {DetailPlaylistComponent} from './detail-playlist/detail-playlist.component';
 import {AllSongComponent} from './all-song/all-song.component';
 import {SongPlaylistComponent} from './song-playlist/song-playlist.component';
+import {ItemPlaylistComponent} from './item-playlist/item-playlist.component';
+import {NgxAudioPlayerModule} from 'ngx-audio-player';
 
 
 @NgModule({
@@ -23,14 +24,15 @@ import {SongPlaylistComponent} from './song-playlist/song-playlist.component';
     DetailPlaylistComponent,
     AllSongComponent,
     SongPlaylistComponent],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    PlaylistRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        PlaylistRoutingModule,
+        NgxAudioPlayerModule
+    ],
   providers: [PlaylistService, httpInterceptorProviders]
 })
 export class PlaylistModule {

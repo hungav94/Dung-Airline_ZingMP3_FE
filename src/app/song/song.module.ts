@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {SongService} from './song.service';
 import {httpInterceptorProviders} from '../auth/auth-interceptor';
+import {NgxAudioPlayerModule} from 'ngx-audio-player';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {httpInterceptorProviders} from '../auth/auth-interceptor';
     HttpClientModule,
     SongRouting,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    NgxAudioPlayerModule
   ],
   providers: [SongService, httpInterceptorProviders]
 })

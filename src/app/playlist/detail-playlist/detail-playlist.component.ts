@@ -5,7 +5,8 @@ import {Router} from '@angular/router';
 import {DataTransferService} from '../../data-transfer.service';
 import {SongService} from '../../song/song.service';
 import {Song} from '../../song/Song';
-import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {Track} from 'ngx-audio-player';
 
 @Component({
   selector: 'app-detail-playlist',
@@ -23,6 +24,16 @@ export class DetailPlaylistComponent implements OnInit {
   playlistForm: FormGroup;
   isAddSongToPlaylist = false;
 
+
+  msaapDisplayTitle = true;
+  msaapDisplayPlayList = true;
+  msaapPageSizeOptions = [2, 4, 6];
+  msaapDisplayVolumeControls = true;
+
+// Material Style Advance Audio Player Playlist
+  msaapPlaylist: Track[] = [];
+  track: Track = new Track();
+
   constructor(private playlistService: PlaylistService,
               private fb: FormBuilder,
               private songService: SongService,
@@ -37,6 +48,7 @@ export class DetailPlaylistComponent implements OnInit {
     if (this.playlist.songs !== undefined) {
       this.songList = this.dataTransfer.getDataSong();
       this.spliceSongs(this.playlist, this.songList);
+      this.trackPlaylist();
     }
     this.playlistForm = this.fb.group({
       id: [this.playlist.id],
@@ -55,6 +67,18 @@ export class DetailPlaylistComponent implements OnInit {
         }
       }
     }
+  }
+
+  trackPlaylist() {
+    for (const item of this.playlist.songs) {
+      this.track.title = item.name;
+      this.track.link = 'http://localhost:8083/file/' + item.fileMp3;
+      console.log('title: ' + this.track.title);
+      console.log('link: ' + this.track.link);
+      console.log(this.track);
+      this.msaapPlaylist.push(this.track);
+    }
+    console.log(this.msaapPlaylist);
   }
 
   addSongToPlaylist(index: number) {
@@ -96,8 +120,8 @@ export class DetailPlaylistComponent implements OnInit {
     console.log(1);
     const songFormArray = this.playlistForm.controls.songs as FormArray;
     if (this.playlist.songs.length !== 0) {
-      for (let i = 0; i < this.playlist.songs.length; i++) {
-        songFormArray.push(new FormControl(this.playlist.songs[i].id));
+      for (const item of this.playlist.songs) {
+        songFormArray.push(new FormControl(item.id));
       }
     }
     console.log(new FormControl(id));

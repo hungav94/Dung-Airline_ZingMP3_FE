@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {SongService} from '../song.service';
 import {DataTransferService} from '../../data-transfer.service';
 import {Observable} from 'rxjs';
+import {Track} from 'ngx-audio-player';
 
 @Component({
   selector: 'app-list-song',
@@ -12,20 +13,24 @@ import {Observable} from 'rxjs';
 })
 export class ListSongComponent implements OnInit {
 
-  songList: Song[];
-  $searchName: Observable<any>;
-
   constructor(private router: Router,
               private songService: SongService,
               private dataTransferService: DataTransferService) {
     this.searchSong();
   }
 
+  songList: Song[];
+  $searchName: Observable<any>;
+  song: Song;
+
   ngOnInit() {
+    for (const item of this.songList) {
+      this.song.listenSong = localStorage.getItem('' + item.id);
+    }
     this.searchSong();
     this.$searchName = this.dataTransferService.getDataAsObservarble();
     console.log(this.$searchName);
-    this.$searchName.subscribe( songList => {
+    this.$searchName.subscribe(songList => {
       // console.log(songList);
       this.songList = songList;
     });
@@ -59,5 +64,22 @@ export class ListSongComponent implements OnInit {
   editSong(item: Song) {
     this.dataTransferService.setData(item);
     this.router.navigateByUrl('/song/editSong');
+  }
+
+  playMp3(event, song: Song) {
+    let count = 0;
+    if (localStorage.getItem('' + song.id) === undefined) {
+      event.target.play();
+      count++;
+      localStorage.setItem('' + song.id, '' + count);
+      console.log(localStorage.getItem('' + song.id));
+    } else {
+      event.target.play();
+      count = Number(localStorage.getItem('' + song.id));
+      count++;
+      localStorage.setItem('' + song.id, '' + count);
+      console.log(localStorage.getItem('' + song.id));
+    }
+
   }
 }

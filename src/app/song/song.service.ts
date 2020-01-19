@@ -17,6 +17,10 @@ export class SongService {
     return this.http.get<Song[]>(this.url);
   }
 
+  getSongListOrderByIdDesc(): Observable<Song[]> {
+    return this.http.get<Song[]>(this.url + '-sort-desc');
+  }
+
   deleteSong(song: Song) {
     return this.http.delete(this.url + '/' + song.id);
   }
