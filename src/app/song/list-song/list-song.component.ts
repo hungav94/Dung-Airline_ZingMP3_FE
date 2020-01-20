@@ -4,7 +4,6 @@ import {Router} from '@angular/router';
 import {SongService} from '../song.service';
 import {DataTransferService} from '../../data-transfer.service';
 import {Observable} from 'rxjs';
-import {Track} from 'ngx-audio-player';
 
 @Component({
   selector: 'app-list-song',
@@ -24,17 +23,21 @@ export class ListSongComponent implements OnInit {
   song: Song;
 
   ngOnInit() {
-    for (const item of this.songList) {
-      this.song.listenSong = localStorage.getItem('' + item.id);
-    }
     this.searchSong();
     this.$searchName = this.dataTransferService.getDataAsObservarble();
-    console.log(this.$searchName);
+    // console.log(this.$searchName);
+    console.log(this.$searchName.subscribe(songList => {
+      this.songList = songList;
+    }));
     this.$searchName.subscribe(songList => {
-      // console.log(songList);
       this.songList = songList;
     });
     // this.refreshSongList();
+    // for (const item of this.songList) {
+    //   console.log(1);
+    //   this.song.listenSong = localStorage.getItem('' + item.id);
+    //   console.log(this.song.listenSong);
+    // }
   }
 
   searchSong() {
