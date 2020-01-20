@@ -1,5 +1,8 @@
-<div *ngIf="isSignedUp; else signupForm">
+<div *ngIf="isSignedUp; else signupForm" class="btn" >
   Your registration is successful. Please login!
+  <div>
+    <a class="underlineHover" href="/login">Login</a>
+  </div>
 </div>
 
 <!--  <div class="row col-sm-6 wrapper fadeInDown" style="max-width:350px;">-->
@@ -55,40 +58,46 @@
 
       <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="form-group">
-          <input type="text" class="fadeIn second" placeholder="Name" name="name" [(ngModel)]="form.name"
-                 #name="ngModel" required>
+          <input type="text" class="fadeIn second" placeholder="Name" name="name" [(ngModel)]="form.name" #name="ngModel" required>
           <div *ngIf="f.submitted && name.invalid">
-            <div *ngIf="name.errors.required">Name is required</div>
-          </div>
-        </div>
-        <input type="text" class="fadeIn second" placeholder="User name">
-        <div class="form-group">
-          <input type="text" class="fadeIn third" placeholder="password" name="password" [(ngModel)]="form.password"
-                 #password="ngModel"
-                 required minlength="6">
-          <div *ngIf="f.submitted && password.invalid">
-            <div *ngIf="password.errors.required">Password is required</div>
-            <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+            <div *ngIf="name.errors.required" class="btn">Name is required</div>
           </div>
         </div>
 
+        <div class="form-group">
+        <input type="text" class="fadeIn second" placeholder="User name" name="username" [(ngModel)]="form.username" #username="ngModel" required/>
+          <div *ngIf="f.submitted && username.invalid">
+            <div *ngIf="username.errors.required" class="btn">Username is required</div>
+          </div>
+        </div>
 <!--        <input type="text" class="fadeIn third" placeholder=" Comfirm password">-->
 
         <div class="form-group">
           <input type="text" class="fadeIn third" placeholder="Email" name="email" [(ngModel)]="form.email"
                  #email="ngModel" required email>
           <div *ngIf="f.submitted && email.invalid">
-            <div *ngIf="email.errors.required">Email is required</div>
-            <div *ngIf="email.errors.email">Email must be a valid email address</div>
+            <div *ngIf="email.errors.required" class="btn">Email is required</div>
+            <div *ngIf="email.errors.email" class="btn">Email must be a valid email address</div>
           </div>
         </div>
+
+        <div class="form-group">
+          <input type="password" class="fadeIn third" placeholder="password" name="password" [(ngModel)]="form.password"
+                 #password="ngModel"
+                 required minlength="6">
+          <div *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required" class="btn">Password is required</div>
+            <div *ngIf="password.errors.minlength" class="btn">Password must be at least 6 characters</div>
+          </div>
+        </div>
+
         <div class="form-group">
           <input type="submit" class="fadeIn fourth" value="Register" >
-<!--          <button type="submit" class="btn btn-primary">Register</button>-->
           <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
             Signup failed!<br/>{{errorMessage}}
           </div>
         </div>
+
       </form>
 
       <div id="formFooter">

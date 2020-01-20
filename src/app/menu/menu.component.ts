@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {SongService} from '../song/song.service';
 import {DataTransferService} from '../data-transfer.service';
 import {TokenStorageService} from '../auth/token-storage.service';
+import {PlaylistService} from '../playlist/playlist.service';
 
 @Component({
   selector: 'app-menu',
@@ -17,7 +18,8 @@ export class MenuComponent implements OnInit {
   constructor(private router: Router,
               private songService: SongService,
               private dataTransfer: DataTransferService,
-              private tokenStorage: TokenStorageService) {
+              private tokenStorage: TokenStorageService,
+              private playlistService: PlaylistService) {
   }
 
   ngOnInit() {
@@ -41,7 +43,6 @@ export class MenuComponent implements OnInit {
 
   Search(event) {
     const search = event.target.value;
-    console.log(search);
     if (search === '') {
       this.songService.getSongList().subscribe(result => {
         const song = result;
@@ -51,7 +52,7 @@ export class MenuComponent implements OnInit {
       this.songService.searchSongByName(search).subscribe(result => {
         const song = result;
         this.dataTransfer.setData(song);
-        this.router.navigateByUrl('/song/songList');
+        // this.router.navigateByUrl('/song/songList');
       });
     }
   }
@@ -59,4 +60,20 @@ export class MenuComponent implements OnInit {
   Logout() {
     this.tokenStorage.signOut();
   }
+
+  // SearchPlayList(event) {
+  //   const searchPlaylist = event.target.value;
+  //   if (searchPlaylist === '') {
+  //     this.playlistService.getPlaylist().subscribe(result => {
+  //       const playlists = result;
+  //       this.dataTransfer.setData(playlists);
+  //     });
+  //   } else {
+  //     this.playlistService.searchByNamePlaylist(searchPlaylist).subscribe(result => {
+  //       const playlists = result;
+  //       this.dataTransfer.setData(playlists);
+  //       // this.router.navigateByUrl('/playlist');
+  //     });
+  //   }
+  // }
 }

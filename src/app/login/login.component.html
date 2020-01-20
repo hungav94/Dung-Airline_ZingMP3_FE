@@ -15,7 +15,7 @@
                  #username="ngModel"
                  required placeholder="Username"/>
           <div *ngIf="f.submitted && username.invalid">
-            <div *ngIf="username.errors.required">Username is required</div>
+            <div *ngIf="username.errors.required" class="btn">Username is required</div>
           </div>
         </div>
         <!--      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">-->
@@ -24,22 +24,21 @@
                  [(ngModel)]="form.password" #password="ngModel"
                  required minlength="6" placeholder="password"/>
           <div *ngIf="f.submitted && password.invalid">
-            <div *ngIf="password.errors.required">Password is required</div>
-            <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+            <div *ngIf="password.errors.required" class="btn">Password is required</div>
+            <div *ngIf="password.errors.minlength" class="btn">Password must be at least 6 characters</div>
           </div>
         </div>
         <!--      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">-->
         <div class="form-group">
           <input type="submit" class="fadeIn fourth" value="Log In">
 <!--          <button type="submit" class="btn btn-primary fadeIn fourth">Login</button>-->
-          <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
+          <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" >
             Login failed: {{errorMessage}}
           </div>
         </div>
-        <!--      <input type="submit" class="fadeIn fourth" value="Log In">-->
-<!--        <div id="formFooter">-->
+
           <a class="underlineHover" href="#">Forgot Password?</a>
-<!--        </div>-->
+
       </form>
       <hr>
       <p>Don't have an account ?
@@ -47,8 +46,6 @@
       </p>
 
     </div>
-    <!-- Remind Passowrd -->
-
 
   </div>
 </div>

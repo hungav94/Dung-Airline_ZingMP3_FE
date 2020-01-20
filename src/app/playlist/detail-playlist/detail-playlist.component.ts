@@ -7,6 +7,8 @@ import {SongService} from '../../song/song.service';
 import {Song} from '../../song/Song';
 import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Track} from 'ngx-audio-player';
+import {findIndex} from 'rxjs/operators';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-detail-playlist',
@@ -38,15 +40,17 @@ export class DetailPlaylistComponent implements OnInit {
               private fb: FormBuilder,
               private songService: SongService,
               private route: Router,
-              private dataTransfer: DataTransferService) {
+              private dataTransfer: DataTransferService,
+              private location: Location) {
   }
 
   ngOnInit() {
     // this.loadSongList();
-    // this.playlist = this.dataTransfer.getDataPlaylist();
     this.playlist = this.dataTransfer.getDataPlaylist();
-    if (this.playlist.songs !== undefined) {
-      this.songList = this.dataTransfer.getDataSong();
+    this.songList = this.dataTransfer.getDataSong();
+    console.log(this.songList);
+    console.log(this.playlist);
+    if (this.playlist.songs.length !== 0) {
       this.spliceSongs(this.playlist, this.songList);
       this.trackPlaylist();
     }
@@ -60,10 +64,11 @@ export class DetailPlaylistComponent implements OnInit {
   }
 
   spliceSongs(playlist: Playlist, songList: Song[]) {
-    for (let i = 0; i < songList.length; i++) {
-      for (let j = 0; j < playlist.songs.length; j++) {
-        if (songList[i].name === playlist.songs[j].name) {
-          this.songList.splice(i, 1);
+    for (const item of playlist.songs) {
+      for (const item1 of songList) {
+        if (item.id === item1.id) {
+          const index = this.songList.findIndex(x => x === item1);
+          this.songList.splice(index, 1);
         }
       }
     }
@@ -81,15 +86,12 @@ export class DetailPlaylistComponent implements OnInit {
     console.log(this.msaapPlaylist);
   }
 
-  addSongToPlaylist(index: number) {
+  addSongToPlaylist(song: Song) {
     this.isAddSongToPlaylist = true;
-    // this.playlist.songs.push(this.songList[index]);
-    // this.dataTransfer.setDataSongPlaylist(this.playlist);
-    // console.log(index);
-    console.log(this.songList[index]);
-    this.songToPlaylist = this.songList[index];
+    console.log(song);
+    this.playlist.songs.push(song);
+    const index = this.songList.findIndex(x => x === song);
     this.songList.splice(index, 1);
-    this.playlist.songs.push(this.songToPlaylist);
   }
 
   loadSongList() {
@@ -98,11 +100,10 @@ export class DetailPlaylistComponent implements OnInit {
     });
   }
 
-  deleteSongToPlaylist(index: number) {
+  deleteSongToPlaylist(song: Song) {
     this.isAddSongToPlaylist = false;
-    console.log(this.playlist.songs);
-    this.songToPlaylist = this.playlist.songs[index];
-    this.songList.push(this.songToPlaylist);
+    this.songList.push(song);
+    const index = this.playlist.songs.findIndex(x => x === song);
     this.playlist.songs.splice(index, 1);
   }
 
@@ -112,24 +113,17 @@ export class DetailPlaylistComponent implements OnInit {
     this.formData.append('playlist', JSON.stringify(playlistForm));
     this.playlistService.editPlaylist(this.formData).subscribe(result => {
       this.playlist = result;
-      this.route.navigateByUrl('/playlist');
+      this.dataTransfer.setData(this.playlist);
+      this.goBack();
     });
   }
 
   onChangeBox(id: number) {
     console.log(1);
     const songFormArray = this.playlistForm.controls.songs as FormArray;
-    if (this.playlist.songs.length !== 0) {
-      for (const item of this.playlist.songs) {
-        songFormArray.push(new FormControl(item.id));
-      }
-    }
-    console.log(new FormControl(id));
-    if (this.isAddSongToPlaylist) {
-      songFormArray.push(new FormControl(id));
-    } else {
-      const index = songFormArray.controls.findIndex(x => x.value === id);
-      songFormArray.removeAt(index);
+    songFormArray.clear();
+    for (const item of this.playlist.songs) {
+      songFormArray.push(new FormControl(item.id));
     }
   }
 
@@ -140,4 +134,18 @@ export class DetailPlaylistComponent implements OnInit {
   //   };
   // }
 
+  deletePlaylist(id: number) {
+    if (confirm('Are You Sure You delete this playlist ?')) {
+
+      this.playlistService.deletePlaylist(id).subscribe(re => {
+        this.goBack();
+      });
+    }
+  }
+
+  goBack() {
+    this.route.navigate(['/playlist']).then(() => {
+      window.location.reload();
+    });
+  }
 }

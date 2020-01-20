@@ -12,15 +12,15 @@ import {Observable} from 'rxjs';
 })
 export class ListSongComponent implements OnInit {
 
+  songList: Song[];
+  $searchName: Observable<any>;
+  song: Song;
+
   constructor(private router: Router,
               private songService: SongService,
               private dataTransferService: DataTransferService) {
     this.searchSong();
   }
-
-  songList: Song[];
-  $searchName: Observable<any>;
-  song: Song;
 
   ngOnInit() {
     this.searchSong();
