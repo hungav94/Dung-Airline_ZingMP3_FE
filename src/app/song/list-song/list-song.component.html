@@ -1,42 +1,15 @@
 <br>
-<div>
-  <button lass="btn btn-danger" routerLink="/song/addSong">Create Song</button>
+<!--<div class="input-wrapper">-->
+<!--  <button lass="btn btn-danger" routerLink="/playlist/add-playList">Create Playlist</button>-->
+<!--  <input type="text" autocomplete="off" aria-autocomplete="list"-->
+<!--         aria-controls="react-autowhatever-1"-->
+<!--         class="form-control input-placeholder"-->
+<!--         placeholder="Nhập tên Playlist" value="" style="width: 500px"-->
+<!--         (change)="Search($event)">-->
+<!--</div>-->
+<br><button lass="btn btn-danger" routerLink="/song/addSong">Create Song</button>
+<div class="row">
+  <div class="col-2" *ngFor="let item of songList" style="padding-top: 10px; margin-top: 10px; margin-left: 30px">
+    <app-item-song [song]="item" (viewClicked)="goToSongDetail(item.id)"></app-item-song>
+  </div>
 </div>
-<br>
-<table class="table">
-  <thead>
-  <tr>
-    <th scope="col">Avatar</th>
-    <th scope="col"hidden >#</th>
-    <th scope="col">Tên bài hát</th>
-    <th scope="col">Mô tả</th>
-    <th scope="col">Lượt nghe</th>
-    <th scope="col">Avatar</th>
-    <th scope="col">Nghe Nhạc</th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody *ngFor="let item of songList">
-  <tr>
-    <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
-    <th scope="row" hidden>{{item.id}}</th>
-    <td>{{item.name}}</td>
-    <td>{{item.description}}</td>
-    <td>{{item.listenSong}}</td>
-    <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
-    <td>
-      <audio controls (play)="playMp3($event, item)">
-        <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/mpeg">
-        <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/ogg">
-      </audio>
-
-    </td>
-    <td>
-      <button class="btn btn-info" style="margin-left: 50px" type="button" (click)="editSong(item)">Edit</button>
-    </td>
-    <td>
-      <button class="btn btn-danger" style="margin-left: 50px" type="button" (click)="deleteSong(item)">Delete</button>
-    </td>
-  </tr>
-  </tbody>
-</table>

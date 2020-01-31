@@ -10,11 +10,13 @@ import {RouterModule} from '@angular/router';
 import {SongService} from './song.service';
 import {httpInterceptorProviders} from '../auth/auth-interceptor';
 import {NgxAudioPlayerModule} from 'ngx-audio-player';
+import { ItemSongComponent } from './item-song/item-song.component';
+import { DetailSongComponent } from './detail-song/detail-song.component';
 
 
 
 @NgModule({
-  declarations: [AddSongComponent, EditSongComponent, ListSongComponent],
+  declarations: [AddSongComponent, EditSongComponent, ListSongComponent, ItemSongComponent, DetailSongComponent],
   imports: [
     CommonModule,
     FormsModule,

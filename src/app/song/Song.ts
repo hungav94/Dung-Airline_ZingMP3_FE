@@ -5,5 +5,5 @@ export interface Song {
   dateUpLoad: string;
   avatar: string;
   fileMp3: string;
-  listenSong: string;
+  listenSong: number;
 }

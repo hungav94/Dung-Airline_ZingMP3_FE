@@ -19,22 +19,19 @@ export class DetailPlaylistComponent implements OnInit {
 
   playlist: Playlist;
   songList: Song[];
-  songToPlaylist: Song;
   formData = new FormData();
   avatar: any = File;
-  fileMp3: any = File;
   playlistForm: FormGroup;
   isAddSongToPlaylist = false;
 
 
   msaapDisplayTitle = true;
   msaapDisplayPlayList = true;
-  msaapPageSizeOptions = [2, 4, 6];
+  msaapPageSizeOptions = [3, 4, 5];
   msaapDisplayVolumeControls = true;
 
 // Material Style Advance Audio Player Playlist
   msaapPlaylist: Track[] = [];
-  track: Track = new Track();
 
   constructor(private playlistService: PlaylistService,
               private fb: FormBuilder,
@@ -76,12 +73,13 @@ export class DetailPlaylistComponent implements OnInit {
 
   trackPlaylist() {
     for (const item of this.playlist.songs) {
-      this.track.title = item.name;
-      this.track.link = 'http://localhost:8083/file/' + item.fileMp3;
-      console.log('title: ' + this.track.title);
-      console.log('link: ' + this.track.link);
-      console.log(this.track);
-      this.msaapPlaylist.push(this.track);
+      const track: Track = new Track();
+      track.title = item.name;
+      track.link = 'http://localhost:8083/file/' + item.fileMp3;
+      console.log('title: ' + track.title);
+      console.log('link: ' + track.link);
+      console.log(track);
+      this.msaapPlaylist.push(track);
     }
     console.log(this.msaapPlaylist);
   }

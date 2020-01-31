@@ -24,7 +24,8 @@ export class AddSongComponent implements OnInit {
     this.songForm = this.fb.group({
       name: [''],
       description: [''],
-      dateUpload: ['']
+      dateUpload: [''],
+      listenSong: ['0'],
     });
   }
 
@@ -36,6 +37,7 @@ export class AddSongComponent implements OnInit {
   onChangeFileMp3(event) {
     const file = event.target.files[0];
     this.fileMp3 = file;
+    console.log(this.fileMp3);
   }
 
   onSubmit() {
