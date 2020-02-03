@@ -15,7 +15,6 @@ export class AddPlaylistComponent implements OnInit {
   playlistForm: FormGroup;
   songList: Song[];
   avatarPlaylist: any = File;
-  selectedValue = null;
   formData = new FormData();
 
   constructor(private fb: FormBuilder,
@@ -25,19 +24,11 @@ export class AddPlaylistComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.loadSongList();
     this.playlistForm = this.fb.group({
       playlistName: [''],
       playlistDescription: [''],
-      // songs: this.fb.array([])
     });
   }
-
-  // loadSongList() {
-  //   this.songService.getSongList().subscribe(data => {
-  //     this.songList = data;
-  //   });
-  // }
 
   onChangeAvatar(event) {
     const file = event.target.files[0];

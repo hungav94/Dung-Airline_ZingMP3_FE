@@ -12,7 +12,7 @@ import {Observable} from 'rxjs';
 })
 export class ListSongComponent implements OnInit {
 
-  songList: Song[];
+  songList: Song[] = [];
   $searchName: Observable<any>;
   song: Song;
 
@@ -25,19 +25,13 @@ export class ListSongComponent implements OnInit {
   ngOnInit() {
     this.searchSong();
     this.$searchName = this.dataTransferService.getDataAsObservarble();
-    // console.log(this.$searchName);
     console.log(this.$searchName.subscribe(songList => {
       this.songList = songList;
     }));
     this.$searchName.subscribe(songList => {
       this.songList = songList;
     });
-    // this.refreshSongList();
-    // for (const item of this.songList) {
-    //   console.log(1);
-    //   this.song.listenSong = localStorage.getItem('' + item.id);
-    //   console.log(this.song.listenSong);
-    // }
+
   }
 
   searchSong() {
@@ -69,20 +63,27 @@ export class ListSongComponent implements OnInit {
     this.router.navigateByUrl('/song/editSong');
   }
 
-  playMp3(event, song: Song) {
-    let count = 0;
-    if (localStorage.getItem('' + song.id) === undefined) {
-      event.target.play();
-      count++;
-      localStorage.setItem('' + song.id, '' + count);
-      console.log(localStorage.getItem('' + song.id));
-    } else {
-      event.target.play();
-      count = Number(localStorage.getItem('' + song.id));
-      count++;
-      localStorage.setItem('' + song.id, '' + count);
-      console.log(localStorage.getItem('' + song.id));
-    }
+  // playMp3(event, song: Song) {
+  //   let count = 0;
+  //   if (localStorage.getItem('' + song.id) === undefined) {
+  //     event.target.play();
+  //     count++;
+  //     localStorage.setItem('' + song.id, '' + count);
+  //     console.log(localStorage.getItem('' + song.id));
+  //   } else {
+  //     event.target.play();
+  //     count = Number(localStorage.getItem('' + song.id));
+  //     count++;
+  //     localStorage.setItem('' + song.id, '' + count);
+  //     console.log(localStorage.getItem('' + song.id));
+  //   }
+  // }
 
+  goToSongDetail(id: number) {
+    this.songService.getSongById(id).subscribe(result => {
+      this.song = result;
+      this.dataTransferService.setData(this.song);
+      this.router.navigateByUrl('/song/detail-song');
+    });
   }
 }

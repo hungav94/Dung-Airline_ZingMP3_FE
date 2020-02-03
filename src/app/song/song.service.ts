@@ -13,6 +13,10 @@ export class SongService {
   constructor(private http: HttpClient) {
   }
 
+  getSongById(id: number): Observable<Song> {
+    return this.http.get<Song>(this.url + '/' + id);
+  }
+
   getSongList(): Observable<Song[]> {
     return this.http.get<Song[]>(this.url);
   }
@@ -31,6 +35,10 @@ export class SongService {
 
   editSong(formData: FormData): Observable<any> {
     return this.http.put(this.url, formData);
+  }
+
+  updateSongView(formData: FormData): Observable<any> {
+    return this.http.put(this.url + '-view', formData);
   }
 
   searchSongByName(nameSong: string): Observable<Song[]> {
