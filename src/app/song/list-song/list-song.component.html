@@ -11,7 +11,7 @@
     <th scope="col">Tên bài hát</th>
     <th scope="col">Mô tả</th>
     <th scope="col">Lượt nghe</th>
-    <th scope="col">Avatar</th>
+<!--    <th scope="col">Avatar</th>-->
     <th scope="col">Nghe Nhạc</th>
     <th></th>
   </tr>
@@ -23,7 +23,7 @@
     <td>{{item.name}}</td>
     <td>{{item.description}}</td>
     <td>{{item.listenSong}}</td>
-    <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
+<!--    <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>-->
     <td>
       <audio controls (play)="playMp3($event, item)">
         <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/mpeg">

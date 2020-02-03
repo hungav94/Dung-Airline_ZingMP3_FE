@@ -76,12 +76,13 @@ export class DetailPlaylistComponent implements OnInit {
 
   trackPlaylist() {
     for (const item of this.playlist.songs) {
-      this.track.title = item.name;
-      this.track.link = 'http://localhost:8083/file/' + item.fileMp3;
-      console.log('title: ' + this.track.title);
-      console.log('link: ' + this.track.link);
-      console.log(this.track);
-      this.msaapPlaylist.push(this.track);
+      const track = new Track();
+      track.title = item.name;
+      track.link = 'http://localhost:8083/file/' + item.fileMp3;
+      // console.log('title: ' + this.track.title);
+      // console.log('link: ' + this.track.link);
+      // console.log(this.track);
+      this.msaapPlaylist.push(track);
     }
     console.log(this.msaapPlaylist);
   }
