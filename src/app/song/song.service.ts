@@ -9,8 +9,21 @@ import {Observable} from 'rxjs';
 export class SongService {
 
   private url = 'http://localhost:8083/api/song';
+  private urlLike = 'http://localhost:8083/api/likes';
 
   constructor(private http: HttpClient) {
+  }
+
+  getLikesBySong(song: Song): Observable<any> {
+    return this.http.get(this.urlLike + '/' + song.id);
+  }
+
+  addLike(formData: FormData): Observable<any> {
+    return this.http.post<any>(this.urlLike, formData);
+  }
+
+  deleteLike(id: number): Observable<any> {
+    return this.http.delete(this.urlLike + '/' + id);
   }
 
   getSongById(id: number): Observable<Song> {
