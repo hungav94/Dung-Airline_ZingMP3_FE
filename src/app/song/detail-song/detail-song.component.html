@@ -3,3 +3,13 @@
                         [displayTitle]="msbapDisplayTitle"
                         [displayVolumeControls]="msbapDisplayVolumeControls"
                         (click)="playMp3(song); lengthSong($event)"></mat-basic-audio-player>
+<br>
+<div style="width: 100px; height: 100px">
+  <a (click)="clickLike(); isHidden()" id="click1" style="position: absolute"><i class="fa fa-thumbs-up fa-2x"></i></a>
+  <a (click)="clickUnLike(); isHidden()" id="click2" style="position: absolute"><i class="fa fa-thumbs-o-up fa-2x"></i></a>
+  <br>
+  <br>
+  <p>{{likes.length}}</p>
+</div>
+
+

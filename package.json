@@ -25,6 +25,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "bootstrap": "^4.4.1",
+    "font-awesome": "^4.7.0",
     "mp3-duration": "^1.1.0",
     "ngx-audio-player": "^8.0.2",
     "ngx-pagination": "^5.0.0",
