@@ -1,6 +1,12 @@
+<div class="col-12">
+  <mat-advanced-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false"
+                             muted="muted" [displayPlaylist]="msaapDisplayPlayList"
+                             [pageSizeOptions]="msaapPageSizeOptions"
+                             [displayVolumeControls]="msaapDisplayVolumeControls"
+                             [expanded]="true"></mat-advanced-audio-player>
+</div>
 
-<div class="col-6" style="float: left">
-  <br>
+<div class="col-6 border-top" style="float: left">
   <input type="text" placeholder="search">
   <br>
   <table class="table">
@@ -42,6 +48,4 @@
     </table>
     <input type="button" value="trở về" (click)="goBack()">
   </form>
-
 </div>
-

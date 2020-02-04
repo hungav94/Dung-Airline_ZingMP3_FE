@@ -12,8 +12,9 @@ import {Observable} from 'rxjs';
 })
 export class ListSongComponent implements OnInit {
 
-  songList: Song[];
+  songList: Song[] = [];
   $searchName: Observable<any>;
+  song: Song;
 
   constructor(private router: Router,
               private songService: SongService,
@@ -22,13 +23,15 @@ export class ListSongComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(1);
     this.searchSong();
     this.$searchName = this.dataTransferService.getDataAsObservarble();
+    console.log(this.$searchName.subscribe(songList => {
+      this.songList = songList;
+    }));
     this.$searchName.subscribe(songList => {
       this.songList = songList;
-      console.log(this.songList);
     });
+
   }
 
   searchSong() {
@@ -60,7 +63,27 @@ export class ListSongComponent implements OnInit {
     this.router.navigateByUrl('/song/editSong');
   }
 
-  goToViewSong(id: number) {
+  // playMp3(event, song: Song) {
+  //   let count = 0;
+  //   if (localStorage.getItem('' + song.id) === undefined) {
+  //     event.target.play();
+  //     count++;
+  //     localStorage.setItem('' + song.id, '' + count);
+  //     console.log(localStorage.getItem('' + song.id));
+  //   } else {
+  //     event.target.play();
+  //     count = Number(localStorage.getItem('' + song.id));
+  //     count++;
+  //     localStorage.setItem('' + song.id, '' + count);
+  //     console.log(localStorage.getItem('' + song.id));
+  //   }
+  // }
 
+  goToSongDetail(id: number) {
+    this.songService.getSongById(id).subscribe(result => {
+      this.song = result;
+      this.dataTransferService.setData(this.song);
+      this.router.navigateByUrl('/song/detail-song');
+    });
   }
 }

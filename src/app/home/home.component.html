@@ -19,16 +19,159 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+<br>
 
-<div>
-  Danh sách các playlist đc nghe nhiều nhất
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+          Danh sach bai hat duoc nghe nhieu nhat
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col" hidden>#</th>
+            <th scope="col">Tên bài hát</th>
+            <th scope="col">Mô tả</th>
+            <th scope="col">Ngày phát hành</th>
+            <th scope="col">Avatar</th>
+            <th scope="col">Nghe Nhạc</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody *ngFor="let item of songListDesc | paginate:{itemsPerPage: count, currentPage: p}">
+          <tr>
+            <th scope="row" hidden>{{item.id}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.dateUpLoad}}</td>
+            <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
+            <td>
+              <audio controls>
+                <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/mpeg">
+                <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/ogg">
+              </audio>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="text-right">
+          <pagination-controls (pageChange)="p= $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="false" aria-controls="collapseTwo">
+          danh sach bai hat moi nhat
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col" hidden>#</th>
+            <th scope="col">Tên bài hát</th>
+            <th scope="col">Mô tả</th>
+            <th scope="col">Ngày phát hành</th>
+            <th scope="col">Avatar</th>
+            <th scope="col">Nghe Nhạc</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody *ngFor="let item of songListDesc">
+          <tr>
+            <th scope="row" hidden>{{item.id}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.dateUpLoad}}</td>
+            <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
+            <td>
+              <audio controls>
+                <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/mpeg">
+                <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/ogg">
+              </audio>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+                aria-expanded="false" aria-controls="collapseThree">
+          danh sach playlist duoc nghe nhieu nhat
+        </button>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col" hidden>#</th>
+            <th scope="col">Tên bài hát</th>
+            <th scope="col">Mô tả</th>
+            <th scope="col">Ngày phát hành</th>
+            <th scope="col">Avatar</th>
+            <th scope="col">Nghe Nhạc</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody *ngFor="let item of songListDesc">
+          <tr>
+            <th scope="row" hidden>{{item.id}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.dateUpLoad}}</td>
+            <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
+            <td>
+              <audio controls>
+                <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/mpeg">
+                <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/ogg">
+              </audio>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingFour">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour"
+                aria-expanded="false" aria-controls="collapseFour">
+          danh sach playlist moi nhat
+        </button>
+      </h2>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+      <div class="card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
+        officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf
+        moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim
+        keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
+        butcher
+        vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
+        heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
 </div>
-<div>
-  Danh sách các bài hát đc nghe nhiều nhất
-</div>
-<div>
-  Danh sách các bài hát mới nhất
-</div>
-<div>
-  playlist mới nhất
-</div>
+

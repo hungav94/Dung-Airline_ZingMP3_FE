@@ -1,0 +1,5 @@
+<mat-basic-audio-player [audioUrl]="'http://localhost:8083/file/'+song.fileMp3" [title]="song.name" [autoPlay]="false"
+                        muted="muted"
+                        [displayTitle]="msbapDisplayTitle"
+                        [displayVolumeControls]="msbapDisplayVolumeControls"
+                        (click)="playMp3(song); lengthSong($event)"></mat-basic-audio-player>
