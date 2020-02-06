@@ -1,13 +1,12 @@
 <div class="wrapper fadeInDown">
   <div id="formContent">
-    <!-- Tabs Titles -->
 
-    <!-- Icon -->
+
     <div class="fadeIn first">
       <img src="https://appay.vn/wp-content/uploads/2019/09/ung-dung-android-hay-02.jpg" id="icon" alt="User Icon"/>
     </div>
 
-    <!-- Login Form -->
+
     <div>
       <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="form-group">
@@ -18,7 +17,7 @@
             <div *ngIf="username.errors.required" class="btn">Username is required</div>
           </div>
         </div>
-        <!--      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">-->
+
         <div class="form-group">
           <input type="password" id="password" class="form-control fadeIn third" name="password"
                  [(ngModel)]="form.password" #password="ngModel"
@@ -28,21 +27,21 @@
             <div *ngIf="password.errors.minlength" class="btn">Password must be at least 6 characters</div>
           </div>
         </div>
-        <!--      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">-->
+
         <div class="form-group">
           <input type="submit" class="fadeIn fourth" value="Log In">
-<!--          <button type="submit" class="btn btn-primary fadeIn fourth">Login</button>-->
-          <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" >
+
+          <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
             Login failed: {{errorMessage}}
           </div>
         </div>
 
-          <a class="underlineHover" href="#">Forgot Password?</a>
+        <a class="underlineHover" href="#">Forgot Password?</a>
 
       </form>
       <hr>
       <p>Don't have an account ?
-        <a href="signup" class="fadeIn fourth" >Sign Up</a>
+        <a href="signup" class="fadeIn fourth">Sign Up</a>
       </p>
 
     </div>
