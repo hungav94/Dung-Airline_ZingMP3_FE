@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {DataTransferService} from '../../data-transfer.service';
 import {Song} from '../Song';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Like} from '../../Like';
+import {LikeSong} from '../../LikeSong';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {User} from '../../auth/User';
 
@@ -19,8 +19,8 @@ export class DetailSongComponent implements OnInit {
   songForm: FormGroup;
   userForm: FormGroup;
   formData = new FormData();
-  likes: Like[];
-  like: Like;
+  likeSongs: LikeSong[];
+  likeSong: LikeSong;
   isFound = false;
   nameSong: string;
   listenSong: number;
@@ -57,10 +57,10 @@ export class DetailSongComponent implements OnInit {
 
   loadLike() {
     this.songService.getLikesBySong(this.song).subscribe(data => {
-      this.likes = data;
-      console.log(this.likes.length);
-      this.song.likeSong = this.likes.length;
-      this.num = this.likes.length;
+      this.likeSongs = data;
+      console.log(this.likeSongs.length);
+      this.song.likeSong = this.likeSongs.length;
+      this.num = this.likeSongs.length;
       this.checkLike();
       this.isHidden();
       this.songF(this.song);
@@ -103,11 +103,11 @@ export class DetailSongComponent implements OnInit {
   }
 
   checkLike() {
-    for (const item of this.likes) {
+    for (const item of this.likeSongs) {
       if (item.user.username === this.token.getUsername() && item.song.id === this.song.id) {
         this.isFound = true;
-        this.like = item;
-        console.log(this.like.id);
+        this.likeSong = item;
+        console.log(this.likeSong.id);
         break;
       }
     }
@@ -129,7 +129,7 @@ export class DetailSongComponent implements OnInit {
       console.log(this.isFound);
       if (this.isFound) {
         this.isFound = false;
-        this.songService.deleteLike(this.like.id).subscribe(() => {
+        this.songService.deleteLike(this.likeSong.id).subscribe(() => {
           this.loadLike();
         });
       }

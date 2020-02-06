@@ -9,6 +9,8 @@ import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Track} from 'ngx-audio-player';
 import {findIndex} from 'rxjs/operators';
 import {Location} from '@angular/common';
+import {LikePlaylist} from '../../LikePlaylist';
+import {TokenStorageService} from '../../auth/token-storage.service';
 
 @Component({
   selector: 'app-detail-playlist',
@@ -28,6 +30,11 @@ export class DetailPlaylistComponent implements OnInit {
     songs: this.fb.array([]),
   });
   isAddSongToPlaylist = false;
+  username: string;
+  num: number;
+  isFound = false;
+  likePlaylists: LikePlaylist[];
+  likePlaylist: LikePlaylist;
 
 
   msaapDisplayTitle = true;
@@ -44,7 +51,8 @@ export class DetailPlaylistComponent implements OnInit {
               private route: Router,
               private dataTransfer: DataTransferService,
               private location: Location,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private token: TokenStorageService) {
   }
 
   ngOnInit() {
@@ -53,20 +61,23 @@ export class DetailPlaylistComponent implements OnInit {
     this.playlistService.getPlaylistById(id).subscribe(result => {
       this.playlist = result;
       console.log(this.playlist);
-      if (this.playlist.songs.length !== 0) {
-        this.trackPlaylist();
-        this.playlistForm = this.fb.group({
-          id: [this.playlist.id],
-          playlistName: [this.playlist.playlistName],
-          playlistDescription: [this.playlist.playlistDescription],
-          songs: this.fb.array([]),
-        });
-      }
+      this.trackPlaylist();
+      this.playlistF(this.playlist);
+      this.loadLike();
       this.songService.getSongList().subscribe(data => {
         this.songList = data;
         console.log(this.songList);
         this.spliceSongs(this.playlist, this.songList);
       });
+    });
+  }
+
+  playlistF(playlist: Playlist) {
+    this.playlistForm = this.fb.group({
+      id: [playlist.id],
+      playlistName: [playlist.playlistName],
+      playlistDescription: [playlist.playlistDescription],
+      songs: this.fb.array([]),
     });
   }
 
@@ -156,4 +167,80 @@ export class DetailPlaylistComponent implements OnInit {
       window.location.reload();
     });
   }
+
+  loadLike() {
+    this.playlistService.getLikePlaylistByPlaylist(this.playlist).subscribe(result => {
+      this.likePlaylists = result;
+      console.log(this.likePlaylists.length);
+      // this.playlist.likeSong = this.likeSongs.length;
+      this.num = this.likePlaylists.length;
+      this.checkLike();
+      this.isHidden();
+      this.playlistF(this.playlist);
+      const playlistData = this.playlistForm.value;
+      const formDataPlaylistLike = new FormData();
+      formDataPlaylistLike.append('playlist', JSON.stringify(playlistData));
+      // this.songService.updateSongLike(formDataPlaylistLike).subscribe(() => {
+      // });
+    });
+  }
+
+  checkLike() {
+    for (const item of this.likePlaylists) {
+      if (item.user.username === this.token.getUsername() && item.playlist.id === this.playlist.id) {
+        this.isFound = true;
+        this.likePlaylist = item;
+        console.log(this.likePlaylist.id);
+        break;
+      }
+    }
+  }
+
+  isHidden() {
+    if (this.isFound) {
+      document.getElementById('click1').style.visibility = 'hidden';
+      document.getElementById('click2').style.visibility = 'visible';
+    } else {
+      document.getElementById('click1').style.visibility = 'visible';
+      document.getElementById('click2').style.visibility = 'hidden';
+    }
+  }
+
+  clickUnLike() {
+    if (this.token.getUsername()) {
+      console.log('clickUnLike');
+      console.log(this.isFound);
+      if (this.isFound) {
+        this.isFound = false;
+        this.playlistService.deleteLike(this.likePlaylist.id).subscribe(() => {
+          this.loadLike();
+        });
+      }
+    } else {
+      alert('Ban can dang nhap de thuc hien.');
+    }
+  }
+
+  clickLike() {
+    if (this.token.getUsername()) {
+      console.log('clickLike');
+      console.log(this.isFound);
+      if (!this.isFound) {
+        this.isFound = true;
+        this.playlistF(this.playlist);
+        const playlistData = this.playlistForm.value;
+        console.log(playlistData);
+        console.log(this.token.getUsername());
+        const formDataPlaylistLike = new FormData();
+        formDataPlaylistLike.append('playlist', JSON.stringify(playlistData));
+        formDataPlaylistLike.append('username', this.token.getUsername());
+        this.playlistService.addLike(formDataPlaylistLike).subscribe(() => {
+          this.loadLike();
+        });
+      }
+    } else {
+      alert('Ban can dang nhap de thuc hien.');
+    }
+  }
+
 }

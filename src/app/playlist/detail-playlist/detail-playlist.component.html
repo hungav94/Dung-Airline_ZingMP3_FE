@@ -1,5 +1,5 @@
 <br>
-<div class="col-12 border">
+<div class="col-12 border" *ngIf="playlist">
   <br>
   <mat-advanced-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false"
                              muted="muted" [displayPlaylist]="msaapDisplayPlayList"
@@ -7,7 +7,20 @@
                              [displayVolumeControls]="msaapDisplayVolumeControls"
                              [expanded]="true"></mat-advanced-audio-player>
 </div>
-
+<br>
+<div>
+  <div class="col-9" style="float: left">
+    <span style="float: left">Đăng bởi: {{username}}</span>
+  </div>
+  <div class="col-3" style="float: left">
+    <a (click)="clickLike(); isHidden()" id="click1" style="position: absolute; cursor: pointer"><i
+      class="fa fa-thumbs-up fa-2x"></i></a>
+    <a (click)="clickUnLike(); isHidden()" id="click2" style="position: absolute; cursor: pointer"><i
+      class="fa fa-thumbs-o-up fa-2x"></i></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fa fa-2x border" style="">{{num}}</span>
+  </div>
+</div>
 <br>
 <div class="col-6 border" style="float: left">
   <input type="text" placeholder="search">
