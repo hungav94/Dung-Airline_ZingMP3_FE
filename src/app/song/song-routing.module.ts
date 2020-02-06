@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {AddSongComponent} from './add-song/add-song.component';
 import {EditSongComponent} from './edit-song/edit-song.component';
 import {DetailSongComponent} from './detail-song/detail-song.component';
+import {AuthGuard} from '../auth/auth.guard';
 
 
 const routes: Routes = [
@@ -13,14 +14,16 @@ const routes: Routes = [
   },
   {
     path: 'addSong',
-    component: AddSongComponent
+    component: AddSongComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'editSong',
-    component: EditSongComponent
+    path: 'editSong/:id',
+    component: EditSongComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'detail-song',
+    path: 'detail-song/:id',
     component: DetailSongComponent
   }
 ];

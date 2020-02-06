@@ -1,15 +1,31 @@
-<mat-basic-audio-player [audioUrl]="'http://localhost:8083/file/'+song.fileMp3" [title]="song.name" [autoPlay]="false"
-                        muted="muted"
-                        [displayTitle]="msbapDisplayTitle"
-                        [displayVolumeControls]="msbapDisplayVolumeControls"
-                        (click)="playMp3(song); lengthSong($event)"></mat-basic-audio-player>
 <br>
-<div style="width: 100px; height: 100px">
-  <a (click)="clickLike(); isHidden()" id="click1" style="position: absolute"><i class="fa fa-thumbs-up fa-2x"></i></a>
-  <a (click)="clickUnLike(); isHidden()" id="click2" style="position: absolute"><i class="fa fa-thumbs-o-up fa-2x"></i></a>
-  <br>
-  <br>
-  <p>{{likes.length}}</p>
+<div class="col-12">
+  <div class="col-9" style="float: left">
+    <h3>{{nameSong}}</h3>
+  </div>
+  <div class="col-3" style="float: left">
+    <span>Lượt nghe: {{listenSong}}</span>
+  </div>
 </div>
-
+<div class="border">
+  <mat-basic-audio-player [audioUrl]="'http://localhost:8083/file/'+fileNameMp3" [title]="nameSong" [autoPlay]="false"
+                          muted="muted"
+                          [displayTitle]="msbapDisplayTitle"
+                          [displayVolumeControls]="msbapDisplayVolumeControls"
+                          (click)="playMp3(song); lengthSong($event)"></mat-basic-audio-player>
+</div>
+<br>
+<div>
+  <div class="col-9" style="float: left">
+    <span style="float: left">Đăng bởi: {{username}}</span>
+  </div>
+  <div class="col-3" style="float: left">
+    <a (click)="clickLike(); isHidden()" id="click1" style="position: absolute; cursor: pointer"><i
+      class="fa fa-thumbs-up fa-2x"></i></a>
+    <a (click)="clickUnLike(); isHidden()" id="click2" style="position: absolute; cursor: pointer"><i
+      class="fa fa-thumbs-o-up fa-2x"></i></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="fa fa-2x border" style="">{{num}}</span>
+  </div>
+</div>
 

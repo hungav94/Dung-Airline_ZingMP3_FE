@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {SongService} from '../song.service';
 import {DataTransferService} from '../../data-transfer.service';
 import {Song} from '../Song';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-edit-song',

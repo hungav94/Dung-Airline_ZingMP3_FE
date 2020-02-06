@@ -6,4 +6,6 @@ export interface Song {
   avatar: string;
   fileMp3: string;
   listenSong: number;
+  likeSong: number;
+  username: string;
 }

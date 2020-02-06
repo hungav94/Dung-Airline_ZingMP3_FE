@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {SongService} from '../song.service';
 import {Router} from '@angular/router';
+import {TokenStorageService} from '../../auth/token-storage.service';
 
 @Component({
   selector: 'app-add-song',
@@ -17,7 +18,8 @@ export class AddSongComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private songService: SongService,
-              private router: Router) {
+              private router: Router,
+              private tokenStorage: TokenStorageService) {
   }
 
   ngOnInit() {
@@ -26,6 +28,7 @@ export class AddSongComponent implements OnInit {
       description: [''],
       dateUpload: [''],
       listenSong: ['0'],
+      username: [this.tokenStorage.getUsername()],
     });
   }
 
