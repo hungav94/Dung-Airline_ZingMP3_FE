@@ -55,7 +55,7 @@ export class ListPlaylistComponent implements OnInit {
     this.playlistService.getPlaylistById(id).subscribe(result => {
       this.playlistById = result;
       this.dataTransfer.setData(this.playlistById);
-      this.router.navigateByUrl('/playlist/detail-playList');
+      this.router.navigateByUrl('/playlist/detail-playList/' + id);
     });
   }
 

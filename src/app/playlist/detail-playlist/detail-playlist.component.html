@@ -1,4 +1,6 @@
-<div class="col-12">
+<br>
+<div class="col-12 border">
+  <br>
   <mat-advanced-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false"
                              muted="muted" [displayPlaylist]="msaapDisplayPlayList"
                              [pageSizeOptions]="msaapPageSizeOptions"
@@ -6,7 +8,8 @@
                              [expanded]="true"></mat-advanced-audio-player>
 </div>
 
-<div class="col-6 border-top" style="float: left">
+<br>
+<div class="col-6 border" style="float: left">
   <input type="text" placeholder="search">
   <br>
   <table class="table">
@@ -26,11 +29,10 @@
   </table>
 </div>
 
-<div class="col-6" style="float: left">
+<div class="col-6 border" style="float: left">
   <p>{{playlist.playlistName}}</p>
   <input  type="button" value="xoa" (click)="deletePlaylist(playlist.id)">
   <form [formGroup]="playlistForm" (ngSubmit)="onSubmit()">
-
     <table class="table">
       <thead>
       <tr>

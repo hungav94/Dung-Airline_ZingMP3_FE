@@ -27,7 +27,7 @@
       <h2 class="mb-0">
         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
                 aria-expanded="true" aria-controls="collapseOne">
-          Danh sach bai hat duoc nghe nhieu nhat
+          Danh sách bài hát được nghe nhiều nhất
         </button>
       </h2>
     </div>
@@ -38,27 +38,20 @@
           <thead>
           <tr>
             <th scope="col" hidden>#</th>
-            <th scope="col">Tên bài hát</th>
-            <th scope="col">Mô tả</th>
-            <th scope="col">Ngày phát hành</th>
             <th scope="col">Avatar</th>
-            <th scope="col">Nghe Nhạc</th>
+            <th scope="col">Tên bài hát</th>
+            <th scope="col">Lượt nghe</th>
+            <th scope="col">Lượt like</th>
             <th></th>
           </tr>
           </thead>
-          <tbody *ngFor="let item of songListDesc | paginate:{itemsPerPage: count, currentPage: p}">
+          <tbody *ngFor="let item of songListenDesc | paginate:{itemsPerPage: count, currentPage: p}">
           <tr>
             <th scope="row" hidden>{{item.id}}</th>
-            <td>{{item.name}}</td>
-            <td>{{item.description}}</td>
-            <td>{{item.dateUpLoad}}</td>
             <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
-            <td>
-              <audio controls>
-                <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/mpeg">
-                <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/ogg">
-              </audio>
-            </td>
+            <td><a (click)="goToDetailSong(item.id)">{{item.name}}</a></td>
+            <td>{{item.listenSong}}</td>
+            <td>{{item.likeSong}}</td>
           </tr>
           </tbody>
         </table>
@@ -73,7 +66,7 @@
       <h2 class="mb-0">
         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="false" aria-controls="collapseTwo">
-          danh sach bai hat moi nhat
+          Danh sách bài hát mới nhất
         </button>
       </h2>
     </div>
@@ -83,27 +76,20 @@
           <thead>
           <tr>
             <th scope="col" hidden>#</th>
-            <th scope="col">Tên bài hát</th>
-            <th scope="col">Mô tả</th>
-            <th scope="col">Ngày phát hành</th>
             <th scope="col">Avatar</th>
-            <th scope="col">Nghe Nhạc</th>
+            <th scope="col">Tên bài hát</th>
+            <th scope="col">Lượt nghe</th>
+            <th scope="col">Lượt like</th>
             <th></th>
           </tr>
           </thead>
-          <tbody *ngFor="let item of songListDesc">
+          <tbody *ngFor="let item of songIdDesc | paginate:{itemsPerPage: count, currentPage: p}">
           <tr>
             <th scope="row" hidden>{{item.id}}</th>
-            <td>{{item.name}}</td>
-            <td>{{item.description}}</td>
-            <td>{{item.dateUpLoad}}</td>
             <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
-            <td>
-              <audio controls>
-                <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/mpeg">
-                <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/ogg">
-              </audio>
-            </td>
+            <td><a (click)="goToDetailSong(item.id)">{{item.name}}</a></td>
+            <td>{{item.listenSong}}</td>
+            <td>{{item.likeSong}}</td>
           </tr>
           </tbody>
         </table>
@@ -125,27 +111,20 @@
           <thead>
           <tr>
             <th scope="col" hidden>#</th>
-            <th scope="col">Tên bài hát</th>
-            <th scope="col">Mô tả</th>
-            <th scope="col">Ngày phát hành</th>
             <th scope="col">Avatar</th>
-            <th scope="col">Nghe Nhạc</th>
+            <th scope="col">Tên bài hát</th>
+            <th scope="col">Lượt nghe</th>
+            <th scope="col">Lượt like</th>
             <th></th>
           </tr>
           </thead>
-          <tbody *ngFor="let item of songListDesc">
+          <tbody *ngFor="let item of songIdDesc | paginate:{itemsPerPage: count, currentPage: p}">
           <tr>
             <th scope="row" hidden>{{item.id}}</th>
-            <td>{{item.name}}</td>
-            <td>{{item.description}}</td>
-            <td>{{item.dateUpLoad}}</td>
             <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
-            <td>
-              <audio controls>
-                <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/mpeg">
-                <source src="http://localhost:8083/file/{{item.fileMp3}}" type="audio/ogg">
-              </audio>
-            </td>
+            <td><a (click)="goToDetailSong(item.id)">{{item.name}}</a></td>
+            <td>{{item.listenSong}}</td>
+            <td>{{item.likeSong}}</td>
           </tr>
           </tbody>
         </table>

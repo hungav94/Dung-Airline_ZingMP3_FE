@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SongService} from '../song.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {DataTransferService} from '../../data-transfer.service';
 import {Song} from '../Song';
 import {FormBuilder, FormGroup} from '@angular/forms';
@@ -22,6 +22,11 @@ export class DetailSongComponent implements OnInit {
   likes: Like[];
   like: Like;
   isFound = false;
+  nameSong: string;
+  listenSong: number;
+  fileNameMp3: string;
+  username: string;
+  num: number;
 
   // msbapTitle = 'Audio Title';
   // msbapAudioUrl = 'Link to audio URL';
@@ -31,21 +36,39 @@ export class DetailSongComponent implements OnInit {
 
   constructor(private songService: SongService,
               private route: Router,
+              private activatedRoute: ActivatedRoute,
               private dataTransfer: DataTransferService,
               private fb: FormBuilder,
               private token: TokenStorageService) {
   }
 
   ngOnInit() {
-    this.song = this.dataTransfer.getData();
-    this.loadLike();
-    this.isHidden();
+    const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.songService.getSongById(id).subscribe(data => {
+      this.song = data;
+      console.log(this.song);
+      this.nameSong = this.song.name;
+      this.listenSong = this.song.listenSong;
+      this.fileNameMp3 = this.song.fileMp3;
+      this.username = this.song.username;
+      this.loadLike();
+    });
   }
 
   loadLike() {
     this.songService.getLikesBySong(this.song).subscribe(data => {
       this.likes = data;
       console.log(this.likes.length);
+      this.song.likeSong = this.likes.length;
+      this.num = this.likes.length;
+      this.checkLike();
+      this.isHidden();
+      this.songF(this.song);
+      const songData = this.songForm.value;
+      const formDataSongLike = new FormData();
+      formDataSongLike.append('song', JSON.stringify(songData));
+      this.songService.updateSongLike(formDataSongLike).subscribe(() => {
+      });
     });
   }
 
@@ -57,6 +80,7 @@ export class DetailSongComponent implements OnInit {
       dateUpload: [this.song.dateUpLoad],
       avatar: [song.avatar],
       listenSong: [song.listenSong],
+      likeSong: [song.likeSong],
     });
   }
 
@@ -83,6 +107,7 @@ export class DetailSongComponent implements OnInit {
       if (item.user.username === this.token.getUsername() && item.song.id === this.song.id) {
         this.isFound = true;
         this.like = item;
+        console.log(this.like.id);
         break;
       }
     }
@@ -99,37 +124,39 @@ export class DetailSongComponent implements OnInit {
   }
 
   clickUnLike() {
-    this.checkLike();
-    console.log(this.isFound);
-    if (this.isFound) {
-      this.isFound = false;
-      this.songService.deleteLike(this.like.id).subscribe(() => {
-        // this.likes.length--;
-        this.loadLike();
-      });
+    if (this.token.getUsername()) {
+      console.log('clickUnLike');
+      console.log(this.isFound);
+      if (this.isFound) {
+        this.isFound = false;
+        this.songService.deleteLike(this.like.id).subscribe(() => {
+          this.loadLike();
+        });
+      }
+    } else {
+      alert('Ban can dang nhap de thuc hien.');
     }
   }
 
   clickLike() {
-    this.checkLike();
-    console.log(this.isFound);
-    if (!this.isFound) {
-      this.isFound = true;
-      this.songF(this.song);
-      const formData = new FormData();
-      formData.append('song', JSON.stringify(this.songForm.value));
-      formData.append('username', this.token.getUsername());
-      this.songService.addLike(formData).subscribe(data => {
-        // this.likes.length++;
-        this.loadLike();
-      });
+    if (this.token.getUsername()) {
+      console.log('clickLike');
+      console.log(this.isFound);
+      if (!this.isFound) {
+        this.isFound = true;
+        this.songF(this.song);
+        const songData = this.songForm.value;
+        console.log(songData);
+        console.log(this.token.getUsername());
+        const formDataSongLike = new FormData();
+        formDataSongLike.append('song', JSON.stringify(songData));
+        formDataSongLike.append('username', this.token.getUsername());
+        this.songService.addLike(formDataSongLike).subscribe(() => {
+          this.loadLike();
+        });
+      }
+    } else {
+      alert('Ban can dang nhap de thuc hien.');
     }
-    // else {
-    //   this.songService.deleteLike(this.like.id).subscribe(() => {
-    //     this.count--;
-    //     this.loadLike();
-    //     this.checkLike();
-    //   });
-    // }
   }
 }

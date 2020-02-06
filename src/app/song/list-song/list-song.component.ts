@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
 import {Song} from '../Song';
-import {Router} from '@angular/router';
 import {SongService} from '../song.service';
 import {DataTransferService} from '../../data-transfer.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -81,9 +81,9 @@ export class ListSongComponent implements OnInit {
 
   goToSongDetail(id: number) {
     this.songService.getSongById(id).subscribe(result => {
-      this.song = result;
-      this.dataTransferService.setData(this.song);
-      this.router.navigateByUrl('/song/detail-song');
+      // this.song = result;
+      // this.dataTransferService.setData(this.song);
+      this.router.navigateByUrl('/song/detail-song/' + id);
     });
   }
 }

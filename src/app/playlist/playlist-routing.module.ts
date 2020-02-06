@@ -16,11 +16,11 @@ const routes: Routes = [
     component: AddPlaylistComponent
   },
   {
-    path: 'edit-playList',
+    path: 'edit-playList/:id',
     component: EditPlaylistComponent
   },
   {
-    path: 'detail-playList',
+    path: 'detail-playList/:id',
     component: DetailPlaylistComponent
   }
 ];
