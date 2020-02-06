@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Playlist} from '../Playlist';
 import {PlaylistService} from '../playlist.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {DataTransferService} from '../../data-transfer.service';
 import {SongService} from '../../song/song.service';
 import {Song} from '../../song/Song';
@@ -21,7 +21,12 @@ export class DetailPlaylistComponent implements OnInit {
   songList: Song[];
   formData = new FormData();
   avatar: any = File;
-  playlistForm: FormGroup;
+  playlistForm = new FormGroup({
+    id: new FormControl(),
+    playlistName: new FormControl(),
+    playlistDescription: new FormControl(),
+    songs: this.fb.array([]),
+  });
   isAddSongToPlaylist = false;
 
 
@@ -38,25 +43,30 @@ export class DetailPlaylistComponent implements OnInit {
               private songService: SongService,
               private route: Router,
               private dataTransfer: DataTransferService,
-              private location: Location) {
+              private location: Location,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
     // this.loadSongList();
-    this.playlist = this.dataTransfer.getDataPlaylist();
-    this.songList = this.dataTransfer.getDataSong();
-    console.log(this.songList);
-    console.log(this.playlist);
-    if (this.playlist.songs.length !== 0) {
-      this.spliceSongs(this.playlist, this.songList);
-      this.trackPlaylist();
-    }
-    this.playlistForm = this.fb.group({
-      id: [this.playlist.id],
-      playlistName: [this.playlist.playlistName],
-      playlistDescription: [this.playlist.playlistDescription],
-      // avatarPlaylist: [this.playlist.avatarPlaylist],
-      songs: this.fb.array([]),
+    const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.playlistService.getPlaylistById(id).subscribe(result => {
+      this.playlist = result;
+      console.log(this.playlist);
+      if (this.playlist.songs.length !== 0) {
+        this.trackPlaylist();
+        this.playlistForm = this.fb.group({
+          id: [this.playlist.id],
+          playlistName: [this.playlist.playlistName],
+          playlistDescription: [this.playlist.playlistDescription],
+          songs: this.fb.array([]),
+        });
+      }
+      this.songService.getSongList().subscribe(data => {
+        this.songList = data;
+        console.log(this.songList);
+        this.spliceSongs(this.playlist, this.songList);
+      });
     });
   }
 

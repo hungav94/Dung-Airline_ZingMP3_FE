@@ -38,6 +38,14 @@ export class SongService {
     return this.http.get<Song[]>(this.url + '-sort-desc');
   }
 
+  getSongListOrderByLikeSongDesc(): Observable<Song[]> {
+    return this.http.get<Song[]>(this.url + '-like-desc');
+  }
+
+  getSongListOrderByListenSongDesc(): Observable<Song[]> {
+    return this.http.get<Song[]>(this.url + '-listen-desc');
+  }
+
   deleteSong(song: Song) {
     return this.http.delete(this.url + '/' + song.id);
   }
@@ -52,6 +60,10 @@ export class SongService {
 
   updateSongView(formData: FormData): Observable<any> {
     return this.http.put(this.url + '-view', formData);
+  }
+
+  updateSongLike(formData: FormData): Observable<any> {
+    return this.http.put(this.url + '-like', formData);
   }
 
   searchSongByName(nameSong: string): Observable<Song[]> {
