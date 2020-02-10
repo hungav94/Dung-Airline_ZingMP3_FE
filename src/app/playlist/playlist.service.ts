@@ -12,7 +12,7 @@ export class PlaylistService {
   private url = 'http://localhost:8083/api/playlist';
 
   constructor(private http: HttpClient) {
-    }
+  }
 
   getPlaylist(): Observable<Playlist[]> {
     return this.http.get<Playlist[]>(this.url);
@@ -36,5 +36,17 @@ export class PlaylistService {
 
   deletePlaylist(id: number) {
     return this.http.delete(this.url + '/' + id);
+  }
+
+  getLikePlaylistByPlaylist(playlist: Playlist): Observable<any> {
+    return this.http.get(this.url + '-like/' + playlist.id);
+  }
+
+  deleteLike(id: number): Observable<any> {
+    return this.http.delete(this.url + '-like/' + id);
+  }
+
+  addLike(formData: FormData): Observable<any> {
+    return this.http.post<any>(this.url + '-like', formData);
   }
 }

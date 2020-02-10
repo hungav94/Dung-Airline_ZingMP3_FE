@@ -49,19 +49,6 @@ export class ListSongComponent implements OnInit {
     });
   }
 
-  deleteSong(item: Song) {
-    if (confirm('Are You Sure You delete this Song?')) {
-      this.songService.deleteSong(item).subscribe(re => {
-        this.router.navigateByUrl('/song/songList');
-        this.refreshSongList();
-      });
-    }
-  }
-
-  editSong(item: Song) {
-    this.dataTransferService.setData(item);
-    this.router.navigateByUrl('/song/editSong');
-  }
 
   // playMp3(event, song: Song) {
   //   let count = 0;
