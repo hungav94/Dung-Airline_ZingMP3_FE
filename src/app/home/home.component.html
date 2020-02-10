@@ -48,8 +48,8 @@
           <tbody *ngFor="let item of songListenDesc | paginate:{itemsPerPage: count, currentPage: p}">
           <tr>
             <th scope="row" hidden>{{item.id}}</th>
-            <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
-            <td><a (click)="goToDetailSong(item.id)">{{item.name}}</a></td>
+            <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px; cursor: pointer" (click)="goToDetailSong(item.id)" ></td>
+            <td><a (click)="goToDetailSong(item.id)" style="cursor: pointer">{{item.name}}</a></td>
             <td>{{item.listenSong}}</td>
             <td>{{item.likeSong}}</td>
           </tr>
@@ -86,8 +86,8 @@
           <tbody *ngFor="let item of songIdDesc | paginate:{itemsPerPage: count, currentPage: p}">
           <tr>
             <th scope="row" hidden>{{item.id}}</th>
-            <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
-            <td><a (click)="goToDetailSong(item.id)">{{item.name}}</a></td>
+            <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px; cursor: pointer" (click)="goToDetailSong(item.id)" ></td>
+            <td><a (click)="goToDetailSong(item.id)" style="cursor: pointer">{{item.name}}</a></td>
             <td>{{item.listenSong}}</td>
             <td>{{item.likeSong}}</td>
           </tr>
@@ -107,27 +107,27 @@
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body">
-        <table class="table">
-          <thead>
-          <tr>
-            <th scope="col" hidden>#</th>
-            <th scope="col">Avatar</th>
-            <th scope="col">Tên bài hát</th>
-            <th scope="col">Lượt nghe</th>
-            <th scope="col">Lượt like</th>
-            <th></th>
-          </tr>
-          </thead>
-          <tbody *ngFor="let item of songIdDesc | paginate:{itemsPerPage: count, currentPage: p}">
-          <tr>
-            <th scope="row" hidden>{{item.id}}</th>
-            <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>
-            <td><a (click)="goToDetailSong(item.id)">{{item.name}}</a></td>
-            <td>{{item.listenSong}}</td>
-            <td>{{item.likeSong}}</td>
-          </tr>
-          </tbody>
-        </table>
+<!--        <table class="table">-->
+<!--          <thead>-->
+<!--          <tr>-->
+<!--            <th scope="col" hidden>#</th>-->
+<!--            <th scope="col">Avatar</th>-->
+<!--            <th scope="col">Tên bài hát</th>-->
+<!--            <th scope="col">Lượt nghe</th>-->
+<!--            <th scope="col">Lượt like</th>-->
+<!--            <th></th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <tbody *ngFor="let item of songIdDesc | paginate:{itemsPerPage: count, currentPage: p}">-->
+<!--          <tr>-->
+<!--            <th scope="row" hidden>{{item.id}}</th>-->
+<!--            <td><img src="http://localhost:8083/file/{{item.avatar}}" style="width: 100px; height: 100px"></td>-->
+<!--            <td><a (click)="goToDetailSong(item.id)">{{item.name}}</a></td>-->
+<!--            <td>{{item.listenSong}}</td>-->
+<!--            <td>{{item.likeSong}}</td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
       </div>
     </div>
   </div>

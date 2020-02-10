@@ -49,22 +49,23 @@ export class DetailPlaylistComponent implements OnInit {
 
   ngOnInit() {
     // this.loadSongList();
+    // this.playlist = this.dataTransfer.getDataPlaylist();
     const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
     this.playlistService.getPlaylistById(id).subscribe(result => {
       this.playlist = result;
-      console.log(this.playlist);
-      if (this.playlist.songs.length !== 0) {
-        this.trackPlaylist();
-        this.playlistForm = this.fb.group({
-          id: [this.playlist.id],
-          playlistName: [this.playlist.playlistName],
-          playlistDescription: [this.playlist.playlistDescription],
-          songs: this.fb.array([]),
-        });
-      }
+      // console.log(this.playlist.songs.length);
+      // if (this.playlist.songs.length !== 0) {
+      this.trackPlaylist();
+      this.playlistForm = this.fb.group({
+        id: [this.playlist.id],
+        playlistName: [this.playlist.playlistName],
+        playlistDescription: [this.playlist.playlistDescription],
+        songs: this.fb.array([]),
+      });
+      // }
       this.songService.getSongList().subscribe(data => {
         this.songList = data;
-        console.log(this.songList);
+        // console.log(this.songList);
         this.spliceSongs(this.playlist, this.songList);
       });
     });
@@ -83,6 +84,8 @@ export class DetailPlaylistComponent implements OnInit {
 
   trackPlaylist() {
     for (const item of this.playlist.songs) {
+      console.log('trackPlaylist');
+      console.log(this.playlist.songs);
       const track: Track = new Track();
       track.title = item.name;
       track.link = 'http://localhost:8083/file/' + item.fileMp3;

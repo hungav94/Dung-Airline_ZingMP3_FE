@@ -38,6 +38,11 @@ export class DataTransferService {
     return this.dataSongPlaylist;
   }
 
+  setDataPlaylist(data: any) {
+    const tmp = this.data;
+    return tmp;
+  }
+
   getDataPlaylist() {
     const tmp = this.data;
     // this.data = undefined;

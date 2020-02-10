@@ -1,5 +1,5 @@
 <br>
-<div class="col-12 border">
+<div class="col-12 border" *ngIf="playlist">
   <br>
   <mat-advanced-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false"
                              muted="muted" [displayPlaylist]="msaapDisplayPlayList"
