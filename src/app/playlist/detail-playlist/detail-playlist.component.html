@@ -1,5 +1,6 @@
 <br>
-<div class="col-12 border" *ngIf="playlist">
+<div *ngIf="playlist">
+<div class="col-12 border">
   <br>
   <mat-advanced-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle" [autoPlay]="false"
                              muted="muted" [displayPlaylist]="msaapDisplayPlayList"
@@ -42,9 +43,10 @@
   </table>
 </div>
 
-<div class="col-6 border" style="float: left">
+<div class="col-6 border" style="float: left" *ngIf="playlistForm">
   <p>{{playlist.playlistName}}</p>
-  <input  type="button" value="xoa" (click)="deletePlaylist(playlist.id)">
+  <input type="button" value="sua" (click)="goToEditPlaylist(playlist.id)">
+  <input type="button" value="xoa" (click)="deletePlaylist(playlist.id)">
   <form [formGroup]="playlistForm" (ngSubmit)="onSubmit()">
     <table class="table">
       <thead>
@@ -63,4 +65,5 @@
     </table>
     <input type="button" value="trở về" (click)="goBack()">
   </form>
+</div>
 </div>

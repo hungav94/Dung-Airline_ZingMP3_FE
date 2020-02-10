@@ -175,6 +175,7 @@ export class DetailPlaylistComponent implements OnInit {
       // this.playlist.likeSong = this.likeSongs.length;
       this.num = this.likePlaylists.length;
       this.checkLike();
+      console.log(this.playlist.id);
       this.isHidden();
       this.playlistF(this.playlist);
       const playlistData = this.playlistForm.value;
@@ -243,4 +244,7 @@ export class DetailPlaylistComponent implements OnInit {
     }
   }
 
+  goToEditPlaylist(id: number) {
+    this.route.navigateByUrl('playlist/edit-playList/' + id);
+  }
 }

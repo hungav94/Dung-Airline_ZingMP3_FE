@@ -4,6 +4,7 @@ import {ListPlaylistComponent} from './list-playlist/list-playlist.component';
 import {AddPlaylistComponent} from './add-playlist/add-playlist.component';
 import {EditPlaylistComponent} from './edit-playlist/edit-playlist.component';
 import {DetailPlaylistComponent} from './detail-playlist/detail-playlist.component';
+import {AuthGuard} from '../auth/auth.guard';
 
 
 const routes: Routes = [
@@ -13,11 +14,13 @@ const routes: Routes = [
   },
   {
     path: 'add-playList',
-    component: AddPlaylistComponent
+    component: AddPlaylistComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'edit-playList/:id',
-    component: EditPlaylistComponent
+    component: EditPlaylistComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'detail-playList/:id',
